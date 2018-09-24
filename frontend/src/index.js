@@ -9,7 +9,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-	<Provider store={store}>
+	<Provider>
 		<Router history={history}>
 			<React.Fragment>
 				<Route exact path={'/'} component={Search} key="Search" />
