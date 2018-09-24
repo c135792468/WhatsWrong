@@ -65,7 +65,7 @@ class Search extends Component {
 					</select><br/>
 					<input className="text" id="age-input" type="text" placeholder="Age" onChange={this.handleAge.bind(this)} value={this.state.data.age} />
 				</div>
-				<input id="submit-button" type="submit" value="Search" onClick={this.handleSubmit.bind(this)} /> <br/>
+				<input id="submit-button" type="submit" value="SEARCH" onClick={this.handleSubmit.bind(this)} /> <br/>
 			</div>
 		);
 	}
