@@ -23,27 +23,6 @@ class Search extends Component {
 		})
 	}
 
-	handleGender(event) {
-		const gender = event.target.value;
-		this.setState({
-			data: {
-				...this.state.data,
-				gender
-			}
-		})
-	}
-
-	handleAge(event) {
-		const age = event.target.value;
-		this.setState({
-			data: {
-				...this.state.data,
-				age
-			}
-		})
-
-	}
-
 	handleSubmit(event) {
 		event.preventDefault();
 		console.log("Search Key: " + this.state.data.searchKey);

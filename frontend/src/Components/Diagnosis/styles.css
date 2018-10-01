@@ -1,0 +1,91 @@
+body {
+	font-size: 15px;
+}
+
+.Diagnosis {
+	display: flex;
+  	background: linear-gradient(#56CCF2, #2F80ED);
+  	height: 100vH;
+  	flex-direction: column;
+}
+
+#research-input {
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 175px;
+	height: 25px;
+	border-radius: 30px;
+	padding-top: 2px;
+	padding-left: 15px;
+	font-size: 17px;
+	user-select: none;
+	font-family: 'Acme', sans-serif;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#diagnosis-title {
+	color: white;
+	font-size: 50px;
+	font-family: 'Acme', sans-serif;
+	margin: 20px 0;
+	align-self: center;
+}
+
+#diagnosis {
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	flex-direction: column;
+	border: 1px solid white;
+	border-radius: 5px;
+	align-self: center;
+	padding: 20px 30px 30px 30px;
+}
+
+#calculated-title {
+	font-size: 20px;
+}
+
+.diagnosis-list {
+	margin-bottom: 10px;
+}
+
+.diagnosis-item {
+	font-size: 20px;
+	margin: 10px 0;
+	line-height: 1.5;
+}
+
+.dropdown {
+	position: relative;
+	width: 75%;
+	overflow: hidden;
+	margin-top: 10px;
+}
+
+.dropdown .other-diagnosis {
+	width: 90%;
+}
+
+.dropdown label {
+	position: relative;
+  	display: block;
+  	color: white;
+  	font-weight: bold;
+  	background: #E43B26;
+  	text-align: center;
+  	padding: 12px 0px;
+  	cursor: pointer;
+  	border-radius: 5px;
+  	font-size: 18px;
+}
+
+.disclaimer {
+	align-self: center;
+	text-align: center;
+	margin: 10px 15px 0px 15px;
+	margin-top: 10px;
+}

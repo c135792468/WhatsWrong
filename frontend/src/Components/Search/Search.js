@@ -43,7 +43,6 @@ class Search extends Component {
 				age
 			}
 		})
-
 	}
 
 	handleSubmit(event) {
