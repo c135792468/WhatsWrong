@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css';
 
 class Search extends Component {
@@ -65,7 +66,8 @@ class Search extends Component {
 					</select><br/>
 					<input className="text" id="age-input" type="text" placeholder="Age" onChange={this.handleAge.bind(this)} value={this.state.data.age} />
 				</div>
-				<input id="submit-button" type="submit" value="SEARCH" onClick={this.handleSubmit.bind(this)} /> <br/>
+				<input id="search-button" type="submit" value="SEARCH" onClick={this.handleSubmit.bind(this)} /> <br/>
+				<button><Link to="/symptoms">Symptoms Page</Link></button>
 			</div>
 		);
 	}

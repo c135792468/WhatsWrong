@@ -1,0 +1,72 @@
+body {
+	font-size: 15px;
+}
+
+.Symptoms {
+	display: flex;
+  	background: linear-gradient(#56CCF2, #2F80ED);
+  	height: 100vH;
+  	flex-direction: column;
+}
+
+#research-input {
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 175px;
+	height: 25px;
+	border-radius: 30px;
+	padding-top: 2px;
+	padding-left: 15px;
+	font-size: 17px;
+	user-select: none;
+	font-family: 'Acme', sans-serif;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#symptoms-title {
+	color: white;
+	font-size: 50px;
+	font-family: 'Acme', sans-serif;
+	margin: 20px 0;
+	align-self: center;
+}
+
+#symptoms {
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	flex-direction: column;
+	border: 1px solid white;
+	border-radius: 5px;
+	align-self: center;
+	padding: 20px 30px 30px 30px;
+}
+
+#apply-title {
+	font-size: 20px;
+}
+
+.symptom {
+	margin-bottom: 10px;
+}
+
+#submit-button {
+	margin-top: 10px;
+	border: none;
+	padding: 5px 75px;
+	border-radius: 5px;
+	font-size: 22px;
+	font-family: 'Acme', sans-serif;
+	color: white;
+	background-color: #66AFFF;
+	font-weight: bold;
+}
+
+#submit-button:hover {
+	cursor: pointer;
+	background-color: #ededed;
+	color: #66AFFF;
+}

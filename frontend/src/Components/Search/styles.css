@@ -54,7 +54,7 @@
   	margin-bottom: 15px;
 }
 
-#submit-button {
+#search-button {
 	border: none;
 	padding: 5px 75px;
 	border-radius: 5px;
@@ -65,7 +65,7 @@
 	font-weight: bold;
 }
 
-#submit-button:hover {
+#search-button:hover {
 	cursor: pointer;
 	background-color: white;
 	color: #4CAF50;
