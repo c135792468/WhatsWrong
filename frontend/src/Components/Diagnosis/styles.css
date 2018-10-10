@@ -87,7 +87,7 @@ body {
 	max-height: 100px;
 	padding: 10px 0 20px 0;
 	overflow-y: auto;
-
+	border: 1px solid #878787;
 }
 
 .dropdown input[type=checkbox] + label::after {
@@ -135,7 +135,7 @@ body {
 .disclaimer {
 	align-self: center;
 	text-align: center;
-	margin: 10px 15px 0px 15px;
+	margin: 10px 40px 0px 40px;
 	margin-top: 15px;
 	font-size: 10px
 }
