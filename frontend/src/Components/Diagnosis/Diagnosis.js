@@ -44,15 +44,22 @@ class Search extends Component {
 					<div class="dropdown">
 						<input id="see-more" type="checkbox" name="tab" />
 						<label for="see-more">Click here for other possible diagnosis</label>
-						<div>
-							<ul class="other-diagnosis">
+						<div class="more-diagnosis">
+							<ul class="more-diagnosis-list">
 								<li class="diagnosis-item">There is a 15% chance that you have a <strong>BROKEN ANKLE</strong></li>
 								<li class="diagnosis-item">To read more about broken ankles, visit <a href="https://www.webmd.com/fitness-exercise/ankle-fracture">https://www.webmd.com/fitness-exercise/ankle-fracture</a></li>
+								<li class="diagnosis-item">There is a 15% chance that you have a <strong>BROKEN ANKLE</strong></li>
+								<li class="diagnosis-item">To read more about broken ankles, visit <a href="https://www.webmd.com/fitness-exercise/ankle-fracture">https://www.webmd.com/fitness-exercise/ankle-fracture</a></li>
+							<li class="diagnosis-item">There is a 15% chance that you have a <strong>BROKEN ANKLE</strong></li>
+								<li class="diagnosis-item">To read more about broken ankles, visit <a href="https://www.webmd.com/fitness-exercise/ankle-fracture">https://www.webmd.com/fitness-exercise/ankle-fracture</a></li>
+							
 							</ul>
 						</div>
-					</div>	
-					<h4 class="disclaimer">DISCLAIMER</h4>
-					<h4 class="disclaimer">WE ARE NOT DOCTORS. WE ARE SIMPLY GIVING YOU A CALCULATED DIAGNOSIS USING ALGORITHMS. IF POSSIBLE, PLEASE VISIT YOUR PERSONAL DOCTOR. IF PAIN IS UNBEARABLE, PLEASE GO TO THE EMERGENCY ROOM OR CALL 911.</h4>
+					</div>
+					<div class="disclaimer">
+						<h4 class="title">DISCLAIMER</h4>
+						<h4>WE ARE NOT DOCTORS. WE ARE SIMPLY GIVING YOU A CALCULATED DIAGNOSIS USING ALGORITHMS. IF POSSIBLE, PLEASE VISIT YOUR PERSONAL DOCTOR. IF PAIN IS UNBEARABLE, PLEASE GO TO THE EMERGENCY ROOM OR CALL 911.</h4>
+					</div>
 				</div>
 			</div>
 		);
