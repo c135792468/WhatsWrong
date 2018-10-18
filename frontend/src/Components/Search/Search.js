@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './styles.css';
 
 class Search extends Component {
@@ -50,6 +51,17 @@ class Search extends Component {
 		console.log("Search Key: " + this.state.data.searchKey);
 		console.log("Gender: " + this.state.data.gender);
 		console.log("Age: " + this.state.data.age);
+
+		var request = require('axios');
+		axios.post('http://18.191.248.57:80', {'t1': this.state.data.searchKey})
+			.then(function (response) {
+				console.log(response);
+				var obj = JSON.stringify(response)
+				console.log(obj);
+			})
+			.catch(function (error) {
+				console.log(error);
+			}); 
 	}
 
 	render(){
