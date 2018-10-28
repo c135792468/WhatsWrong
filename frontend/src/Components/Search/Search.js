@@ -66,109 +66,37 @@ class Search extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		console.log("Search Key: " + this.state.data.searchKey);
-		console.log("Gender: " + this.state.data.gender);
-		console.log("Age: " + this.state.data.age);
-
-		// var request = require('axios');
-		// axios.post('http://18.191.248.57:80/search', {'t1': this.state.data.searchKey})
-		// 	.then(function (response) {
-		// 		console.log(response);
-		// 		var obj = JSON.stringify(response)
-		// 		console.log(obj);
-		// 	})
-		// 	.catch(function (error) {
-		// 		console.log(error);
-		// 	}); 
+		// console.log("Search Key: " + this.state.data.searchKey);
+		// console.log("Gender: " + this.state.data.gender);
+		// console.log("Age: " + this.state.data.age);
 
 		var arr = [];
+		var arrString = [];
 		var j;
 		var js =  {'search': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
-		//var post_data = JSON.parse(js);
-		/* var request = require('axios');
-			axios.get('http://127.0.0.1:5000/test')
-			  .then(function (response) {
-				console.log(response);
-			  })
-			  .catch(function (error) {
-				console.log(error);
-			  }); */
-			  //'http://127.0.0.1:5000/search' 
 			  
 			var request = require('axios');
 			axios.post('http://18.191.248.57:80/search',js)
-			.then((response) => {
-				
-			
-				console.log(response);
-				//turn the response into a json formated string
-				var obj = JSON.stringify(response);
-				//turn the string into a json obj, react stores the json array sent by the server in a dictionary called
-				//'data', so loop through data, not the response
-				var x = JSON.parse(obj);
-				j=obj;
-				console.log(obj);
-				//console.log(x.data[0]);
-				
-				for(var i =0; i<x.data.length; i++) {
-					//console.log(x.data[i].common_name);
-					arr.push(x.data[i].common_name);
-					console.log(arr[i]);
-					this.handleSymptoms(arr[i]);
-					//console.log(x.data[i].SID)
-				}
-				
-				//this.handleSearch(obj);
-			
-			
-			
-			
-			//this.handleSymptoms('rrr');
-			
-			})
 
-			// var js =  {'search': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
-		//var post_data = JSON.parse(js);
-		/* var request = require('axios');
-			axios.get('http://127.0.0.1:5000/test')
-			  .then(function (response) {
-				console.log(response);
-			  })
-			  .catch(function (error) {
-				console.log(error);
-			  }); */
-			  //'http://127.0.0.1:5000/search'
-			  
-			// var request = require('axios');
-			// axios.post('http://18.191.248.57:80/search',js)
-			//   .then(function (response) {
-			// 	console.log(response);
-			// 	//turn the response into a json formated string
-			// 	var obj = JSON.stringify(response);
-			// 	//turn the string into a json obj, react stores the json array sent by the server in a dictionary called
-			// 	//'data', so loop through data, not the response
-			// 	var x = JSON.parse(obj);
-			// 	j=x;
-			// 	console.log(obj);
-				//console.log(x.data[0]);
+			.then((response) => {
+				var obj = JSON.stringify(response);
+				var x = JSON.parse(obj);
+
+				console.log(x);
+
+				j = x;
 				
-				/* for(var i =0; i<x.data.length; i++)
+				for(var i = 0; i < x.data.length; i++)
 					{
-						//console.log(x.data[i].common_name);
 						arr.push(x.data[i].common_name);
 						console.log(arr[i]);
-						this.handleSymptoms(arr[i]);
-						//console.log(x.data[i].SID)
-						
-						
-					} */
-					//this.handleSymptoms('kkk');
-					// 
-					//this.handleSymptoms=this.handleSymptoms.bind(this)
-					//this.setState({symptoms:arr})
-					//console.log("SYMP: " + this.state.data.symptoms);
-				
-			  // })
+						// this.handleSymptoms(arr[i]);
+					}
+			  })
+
+			  .catch((error) => {
+				console.log(error);
+			  }); 
 	}
 
 	render(){
