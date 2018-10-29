@@ -51,10 +51,12 @@ class Search extends Component {
 	handleSymptoms(event) {
 		this.setState({
 			data: {
+				...this.state.data,
 				symptoms: [...this.state.data.symptoms, event]
 			}	
 		})
 	}
+
 
 	handleSearch(event) {
 		this.setState({
@@ -66,6 +68,13 @@ class Search extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
+
+		this.setState({
+			data: {
+				...this.state.data,
+				symptoms: []
+			}	
+		})
 		// console.log("Search Key: " + this.state.data.searchKey);
 		// console.log("Gender: " + this.state.data.gender);
 		// console.log("Age: " + this.state.data.age);
@@ -87,16 +96,17 @@ class Search extends Component {
 				j = x;
 				
 				for(var i = 0; i < x.data.length; i++)
-					{
-						arr.push(x.data[i].common_name);
-						console.log(arr[i]);
-						// this.handleSymptoms(arr[i]);
-					}
-			  })
+				{
+					arr.push(x.data[i].common_name);
+					console.log(i + " " + arr[i]);
+					this.handleSymptoms(arr[i]);
+					console.log(this.state.data.symptoms.length)
+				}
+			})
 
-			  .catch((error) => {
+			.catch((error) => {
 				console.log(error);
-			  }); 
+			});
 	}
 
 	render(){
