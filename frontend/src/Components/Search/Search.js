@@ -82,7 +82,7 @@ class Search extends Component {
 		var arr = [];
 		var arrString = [];
 		var j;
-		var js =  {'search': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
+		var js = {'search': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
 			  
 			var request = require('axios');
 			axios.post('http://18.191.248.57:80/search',js)
@@ -95,13 +95,20 @@ class Search extends Component {
 
 				j = x;
 				
-				for(var i = 0; i < x.data.length; i++)
-				{
-					arr.push(x.data[i].common_name);
-					console.log(i + " " + arr[i]);
-					this.handleSymptoms(arr[i]);
-					console.log(this.state.data.symptoms.length)
+				if (x.data.length > 10) {
+					for(var i = 0; i < 10; i++) {
+						arr.push(x.data[i].common_name);
+						console.log(i + " " + arr[i]);
+						this.handleSymptoms(arr[i]);
+					}
+				} else {
+					for(var i = 0; i < x.data.length; i++) {
+						arr.push(x.data[i].common_name);
+						console.log(i + " " + arr[i]);
+						this.handleSymptoms(arr[i]);
+					}
 				}
+				
 			})
 
 			.catch((error) => {
