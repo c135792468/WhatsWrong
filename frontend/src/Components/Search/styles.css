@@ -70,3 +70,7 @@
 	background-color: white;
 	color: #4CAF50;
 }
+
+ul {
+	list-style: none;
+}

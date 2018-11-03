@@ -8,6 +8,9 @@ class Search extends Component {
 		super();
 
 		this.state = {
+			title: false,
+			input: false,
+			genderAge: false,
 			data: {
 				searchKey: '',
 				gender: '',
@@ -57,6 +60,21 @@ class Search extends Component {
 		})
 	}
 
+	handleMinimize() {
+		if(this.state.data.symptoms.length > 0) {
+			this.setState({
+				title: true,
+				input: true,
+				genderAge: true,
+			})
+		} else {
+			this.setState({
+				title: false,
+				input: false,
+				genderAge: false,
+			})
+		}
+	}
 
 	handleSearch(event) {
 		this.setState({
@@ -108,8 +126,12 @@ class Search extends Component {
 						this.handleSymptoms(arr[i]);
 					}
 				}
-				
+
+				this.handleMinimize();
+
+				console.log(this.state);
 			})
+
 
 			.catch((error) => {
 				console.log(error);
