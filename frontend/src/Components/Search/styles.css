@@ -18,7 +18,7 @@
 	color: white;
 	font-size: 30px;
 	font-family: 'Acme', sans-serif;
-	margin-top: 20px;
+	margin-top: 0;
 	margin-bottom: 10px;
 }
 
@@ -107,6 +107,7 @@
 
 ul {
 	list-style: none;
+	margin-bottom: 20px;
 }
 
 #showingSymptoms {
@@ -114,12 +115,17 @@ ul {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 50%;
+	width: 40%;
 	flex-direction: column;
 	border: 1px solid white;
 	border-radius: 5px;
 	align-self: center;
 	padding: 20px 30px 30px 30px;
+	margin-bottom: 10px;
+}
+
+.checkbox {
+	margin-right: 20px;
 }
 
 #apply-title {
