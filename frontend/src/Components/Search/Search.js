@@ -185,6 +185,14 @@ class Search extends Component {
 		}
 
 		console.log(checkedSymptom);
+		var jsonList = [];
+
+		for(var i = 0; i < checkedSymptom.length; i++){
+			var dg = {'SID': checkedSymptom[i], 'gender':this.state.data.gender, 'age': this.state.data.age };
+			jsonList.push(dg);
+		}
+
+		console.log(jsonList);
 
 		// if (document.getElementsByClassName())
 		// var symptomSID = [];
