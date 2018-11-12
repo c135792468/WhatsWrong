@@ -172,7 +172,7 @@ class Search extends Component {
 						{/*  <input class="symptom" type="checkbox" name="symptom1" value="symptom1" /> Symptom 1<br/> */}
 						<ul>
 							{this.state.data.symptoms.map((item,index) => 
-								<li class="symptom" key={index}><input class="checkbox" type="checkbox"/>{item}</li>
+								<li class="symptom"><input class="checkbox" type="checkbox" key={index}/>{item}</li>
 							)}
 						</ul>
 					</div>
