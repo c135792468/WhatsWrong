@@ -110,8 +110,8 @@ class Search extends Component {
 			}	
 		})
 
-		var arr = [];
-		var arrString = [];
+		var symptomNames = [];
+		var symptomSID = [];
 		var j;
 		var js = {'search': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
 			  
@@ -128,15 +128,16 @@ class Search extends Component {
 				
 				if (x.data.length > 10) {
 					for(var i = 0; i < 10; i++) {
-						arr.push(x.data[i].common_name);
-						console.log(i + " " + arr[i]);
-						this.handleSymptoms(arr[i]);
+						symptomNames.push(x.data[i].common_name);
+						symptomSID.push(x.data[i].SID);
+						console.log(i + " " + symptomNames[i] + " " + symptomSID[i]);
+						this.handleSymptoms(symptomNames[i]);
 					}
 				} else {
 					for(var i = 0; i < x.data.length; i++) {
-						arr.push(x.data[i].common_name);
-						console.log(i + " " + arr[i]);
-						this.handleSymptoms(arr[i]);
+						symptomNames.push(x.data[i].common_name);
+						console.log(i + " " + symptomNames[i]);
+						this.handleSymptoms(symptomNames[i]);
 					}
 				}
 
