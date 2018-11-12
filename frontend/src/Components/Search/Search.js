@@ -166,44 +166,64 @@ class Search extends Component {
 			}	
 		})
 
-		var symptomNames = [];
-		var symptomSID = [];
-		var j;
-		var dg = {'SID': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
-			  
-		var request = require('axios');
-		axios.post('http://18.191.248.57:80/diagnosis', dg)
-			.then((response) => {
-				var obj = JSON.stringify(response);
-				var x = JSON.parse(obj);
+		var checkedSymptom = [];
 
-				console.log(x);
-
-				j = x;
-				
-				if (x.data.length > 10) {
-					for(var i = 0; i < 10; i++) {
-						symptomNames.push(x.data[i].common_name);
-						symptomSID.push(x.data[i].SID);
-						console.log(i + " " + symptomNames[i] + " " + symptomSID[i]);
-						this.handleSymptoms(symptomNames[i]);
-					}
-				} else {
-					for(var i = 0; i < x.data.length; i++) {
-						symptomNames.push(x.data[i].common_name);
-						console.log(i + " " + symptomNames[i]);
-						this.handleSymptoms(symptomNames[i]);
-					}
+		if (this.state.data.SID.length > 10) {
+			for(var i = 0; i < 10; i++) {
+				if(document.getElementsByClassName("SID")[i].checked){
+					var ID = document.getElementsByClassName("SID")[i].value;
+					checkedSymptom.push(this.state.data.SID[ID])
 				}
+			}
+		} else {
+			for(var i = 0; i < this.state.data.SID.length; i++) {
+				if(document.getElementsByClassName("SID")[i].checked){
+					var ID = document.getElementsByClassName("SID")[i].value;
+					checkedSymptom.push(this.state.data.SID[ID])
+				}
+			}
+		}
 
-				this.handleMinimize();
+		console.log(checkedSymptom);
 
-				console.log(this.state);
-			})
+		// if (document.getElementsByClassName())
+		// var symptomSID = [];
+		// var j;
+		// var dg = {'SID': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
+			  
+		// var request = require('axios');
+		// axios.post('http://18.191.248.57:80/diagnosis', dg)
+		// 	.then((response) => {
+		// 		var obj = JSON.stringify(response);
+		// 		var x = JSON.parse(obj);
 
-			.catch((error) => {
-				console.log(error);
-			});
+		// 		console.log(x);
+
+		// 		j = x;
+				
+		// 		if (x.data.length > 10) {
+		// 			for(var i = 0; i < 10; i++) {
+		// 				symptomNames.push(x.data[i].common_name);
+		// 				symptomSID.push(x.data[i].SID);
+		// 				console.log(i + " " + symptomNames[i] + " " + symptomSID[i]);
+		// 				this.handleSymptoms(symptomNames[i]);
+		// 			}
+		// 		} else {
+		// 			for(var i = 0; i < x.data.length; i++) {
+		// 				symptomNames.push(x.data[i].common_name);
+		// 				console.log(i + " " + symptomNames[i]);
+		// 				this.handleSymptoms(symptomNames[i]);
+		// 			}
+		// 		}
+
+		// 		this.handleMinimize();
+
+		// 		console.log(this.state);
+		// 	})
+
+		// 	.catch((error) => {
+		// 		console.log(error);
+		// 	});
 	}
 
 	render(){
@@ -226,7 +246,7 @@ class Search extends Component {
 						{/*  <input class="symptom" type="checkbox" name="symptom1" value="symptom1" /> Symptom 1<br/> */}
 						<ul>
 							{this.state.data.symptoms.map((item,index) => 
-								<li class="symptom"><input class="checkbox" type="checkbox" key={index}/>{item}</li>
+								<li class="symptom"><input class="checkbox" type="checkbox" class="SID" value={index}/>{item}</li>
 							)}
 						</ul>
 					</div>
