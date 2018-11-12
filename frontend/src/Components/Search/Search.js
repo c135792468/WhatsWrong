@@ -65,41 +65,6 @@ class Search extends Component {
 		})
 	}
 
-	handleMinimize() {
-		if(this.state.data.symptoms.length > 0) {
-			this.setState({
-				title: true,
-				titleView: "minimizedTitleView",
-				input: true,
-				inputView: "minimizedInputView",
-				genderAge: true,
-				genderAgeView: "minimizedGenderAgeView",
-				searchButtonView: "minimizedSearchButtonView",
-				symptomsView: "showingSymptoms",
-
-			})
-		} else {
-			this.setState({
-				title: false,
-				titleView: "originialTitleView",
-				input: false,
-				inputView: "originalInputView",
-				genderAge: false,
-				genderAgeView: "originalGenderAgeView",
-				searchButtonView: "originalSearchButtonView",
-				symptomsView: "emptySymptoms",
-			})
-		}
-	}
-
-	handleSearch(event) {
-		this.setState({
-			data: {
-				search: event
-			}
-		})
-	}
-
 	handleSubmit(event) {
 		event.preventDefault();
 
@@ -150,6 +115,33 @@ class Search extends Component {
 			.catch((error) => {
 				console.log(error);
 			});
+	}
+
+	handleMinimize() {
+		if(this.state.data.symptoms.length > 0) {
+			this.setState({
+				title: true,
+				titleView: "minimizedTitleView",
+				input: true,
+				inputView: "minimizedInputView",
+				genderAge: true,
+				genderAgeView: "minimizedGenderAgeView",
+				searchButtonView: "minimizedSearchButtonView",
+				symptomsView: "showingSymptoms",
+
+			})
+		} else {
+			this.setState({
+				title: false,
+				titleView: "originialTitleView",
+				input: false,
+				inputView: "originalInputView",
+				genderAge: false,
+				genderAgeView: "originalGenderAgeView",
+				searchButtonView: "originalSearchButtonView",
+				symptomsView: "emptySymptoms",
+			})
+		}
 	}
 
 	render(){
