@@ -177,7 +177,6 @@ class Search extends Component {
 			}
 		}
 
-		console.log(checkedSymptom);
 		var jsonList = [];
 
 		for(var i = 0; i < checkedSymptom.length; i++){
