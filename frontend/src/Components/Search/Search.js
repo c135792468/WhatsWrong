@@ -159,13 +159,6 @@ class Search extends Component {
 	handleDiagnose(event) {
 		event.preventDefault();
 
-		this.setState({
-			data: {
-				...this.state.data,
-				SID: '',
-			}	
-		})
-
 		var checkedSymptom = [];
 
 		if (this.state.data.SID.length > 10) {
@@ -193,45 +186,40 @@ class Search extends Component {
 		}
 
 		console.log(jsonList);
+		  
+		var request = require('axios');
+		axios.post('http://18.191.248.57:80/diagnosis', jsonList)
+			.then((response) => {
+				var obj = JSON.stringify(response);
+				var x = JSON.parse(obj);
 
-		// if (document.getElementsByClassName())
-		// var symptomSID = [];
-		// var j;
-		// var dg = {'SID': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
-			  
-		// var request = require('axios');
-		// axios.post('http://18.191.248.57:80/diagnosis', dg)
-		// 	.then((response) => {
-		// 		var obj = JSON.stringify(response);
-		// 		var x = JSON.parse(obj);
+				console.log(x);
 
-		// 		console.log(x);
-
-		// 		j = x;
+				// j = x;
 				
-		// 		if (x.data.length > 10) {
-		// 			for(var i = 0; i < 10; i++) {
-		// 				symptomNames.push(x.data[i].common_name);
-		// 				symptomSID.push(x.data[i].SID);
-		// 				console.log(i + " " + symptomNames[i] + " " + symptomSID[i]);
-		// 				this.handleSymptoms(symptomNames[i]);
-		// 			}
-		// 		} else {
-		// 			for(var i = 0; i < x.data.length; i++) {
-		// 				symptomNames.push(x.data[i].common_name);
-		// 				console.log(i + " " + symptomNames[i]);
-		// 				this.handleSymptoms(symptomNames[i]);
-		// 			}
-		// 		}
+				// if (x.data.length > 10) {
+				// 	for(var i = 0; i < 10; i++) {
+				// 		symptomNames.push(x.data[i].common_name);
+				// 		symptomSID.push(x.data[i].SID);
+				// 		console.log(i + " " + symptomNames[i] + " " + symptomSID[i]);
+				// 		this.handleSymptoms(symptomNames[i]);
+				// 	}
+				// } else {
+				// 	for(var i = 0; i < x.data.length; i++) {
+				// 		symptomNames.push(x.data[i].common_name);
+				// 		console.log(i + " " + symptomNames[i]);
+				// 		this.handleSymptoms(symptomNames[i]);
+				// 	}
+				// }
 
-		// 		this.handleMinimize();
+				// this.handleMinimize();
 
-		// 		console.log(this.state);
-		// 	})
+				// console.log(this.state);
+			})
 
-		// 	.catch((error) => {
-		// 		console.log(error);
-		// 	});
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 
 	render(){
