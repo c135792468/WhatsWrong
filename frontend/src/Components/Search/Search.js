@@ -196,6 +196,16 @@ class Search extends Component {
 	}
 
 	handleDiagnose(event) {
+		event.preventDefault();
+
+		this.setState({
+			data: {
+				...this.state.data,
+				diagnosesNames: [],
+				diagnosesProbabilities: [],
+				diagnosesHints: [],
+			}	
+		})
 
 		var checkedSymptom = [];
 
