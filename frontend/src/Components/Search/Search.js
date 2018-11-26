@@ -26,6 +26,7 @@ class Search extends Component {
 				SID: '',
 				diagnosesNames: [],
 				diagnosesProbabilities: [],
+				diagnosesHints: [],
 			}
 		};
 	}
@@ -126,14 +127,11 @@ class Search extends Component {
 			.then((response) => {
 				var obj = JSON.stringify(response);
 				var x = JSON.parse(obj);
-
-				console.log(x);
 				
 				if (x.data.length > 10) {
 					for(var i = 0; i < 10; i++) {
 						symptomNames.push(x.data[i].common_name);
 						symptomSID.push(x.data[i].SID);
-						console.log(i + " " + symptomNames[i] + " " + symptomSID[i]);
 						this.handleSymptoms(symptomNames[i]);
 						this.handleSID(symptomSID[i]);
 					}
@@ -141,15 +139,12 @@ class Search extends Component {
 					for(var i = 0; i < x.data.length; i++) {
 						symptomNames.push(x.data[i].common_name);
 						symptomSID.push(x.data[i].SID);
-						console.log(i + " " + symptomNames[i]);
 						this.handleSymptoms(symptomNames[i]);
 						this.handleSID(symptomSID[i]);
 					}
 				}
 
 				this.handleMinimizeSearch();
-
-				console.log(this.state);
 			})
 
 			.catch((error) => {
@@ -171,6 +166,15 @@ class Search extends Component {
 			data: {
 				...this.state.data,
 				diagnosesProbabilities: [...this.state.data.diagnosesProbabilities, event]
+			}	
+		})
+	}
+
+	handleDiagnosesHints(event) {
+		this.setState({
+			data: {
+				...this.state.data,
+				diagnosesHints: [...this.state.data.diagnosesHints, event]
 			}	
 		})
 	}
@@ -218,10 +222,9 @@ class Search extends Component {
 			jsonList.push(dg);
 		}
 
-		console.log(jsonList);
-
 		var diagnosisNames = [];
 		var diagnosisProbabilities = [];
+		var diagnosisHints = [];
 		  
 		var request = require('axios');
 		axios.post('http://18.191.248.57:80/diagnosis', jsonList)
@@ -235,25 +238,25 @@ class Search extends Component {
 					for(var i = 0; i < 3; i++) {
 						diagnosisNames.push(x.data[i].common_name);
 						var tempProbability = ((parseFloat(x.data[i].probability) * 100).toFixed(2)).toString();
-						console.log(tempProbability);
 						diagnosisProbabilities.push(tempProbability);
+						diagnosisHints.push(x.data[i].hint);
 						this.handleDiagnosesNames(diagnosisNames[i]);
 						this.handleDiagnosesProbabilities(diagnosisProbabilities[i]);
+						this.handleDiagnosesHints(diagnosisHints[i]);
 					}
 				} else {
 					for(var i = 0; i < x.data.length; i++) {
 						diagnosisNames.push(x.data[i].common_name);
 						var tempProbability = ((parseFloat(x.data[i].probability) * 100).toFixed(2)).toString();
-						console.log(tempProbability);
 						diagnosisProbabilities.push(tempProbability);
+						diagnosisHints.push(x.data[i].hint);
 						this.handleDiagnosesNames(diagnosisNames[i]);
 						this.handleDiagnosesProbabilities(diagnosisProbabilities[i]);
+						this.handleDiagnosesHints(diagnosisHints[i]);
 					}
 				}
 
 				this.handleMinimizeSymptoms();
-
-				console.log(this.state.data.diagnosesProbability[0]);
 			})
 
 			.catch((error) => {
@@ -292,15 +295,13 @@ class Search extends Component {
 
 
 				<div id={this.state.diagnosisView}>
-					<input className="text" id="research-input" type="text" placeholder="Search Again?" onChange={this.handleSearchKey.bind(this)} value={this.state.data.searchKey}/> <br/>
 					<h1 id="diagnosis-title">DIAGNOSIS</h1>
 					<div id="diagnosis">
 						<h3 id="calculated-title">Here is what we calculated:</h3>
 						<div id="diagnosis-list">
 							<ul>
-								
-								<li class="diagnosis-item">There is a {this.state.data.diagnosesProbabilities[0]}% chance that you have a <strong>{this.state.data.diagnosesNames[0]}</strong></li>
-								<li class="diagnosis-item">To read more about ankle sprains, visit <a href="https://www.webmd.com/pain-management/ankle-sprain">https://www.webmd.com/pain-management/ankle-sprain</a></li>
+								<p class="diagnosis-item">There is a {this.state.data.diagnosesProbabilities[0]}% chance that you have a <strong>{this.state.data.diagnosesNames[0]}</strong></p>
+								<p class="diagnosis-item">{this.state.data.diagnosesHints[0]}</p>
 							</ul>
 						</div>
 						<div class="dropdown">
@@ -308,12 +309,11 @@ class Search extends Component {
 							<label for="see-more">Click here for other possible diagnosis</label>
 							<div class="more-diagnosis">
 								<ul class="more-diagnosis-list">
-									<li class="diagnosis-item">There is a 15% chance that you have a <strong>BROKEN ANKLE</strong></li>
-									<li class="diagnosis-item">To read more about broken ankles, visit <a href="https://www.webmd.com/fitness-exercise/ankle-fracture">https://www.webmd.com/fitness-exercise/ankle-fracture</a></li>
-									<li class="diagnosis-item">There is a 15% chance that you have a <strong>BROKEN ANKLE</strong></li>
-									<li class="diagnosis-item">To read more about broken ankles, visit <a href="https://www.webmd.com/fitness-exercise/ankle-fracture">https://www.webmd.com/fitness-exercise/ankle-fracture</a></li>
-									<li class="diagnosis-item">There is a 15% chance that you have a <strong>BROKEN ANKLE</strong></li>
-									<li class="diagnosis-item">To read more about broken ankles, visit <a href="https://www.webmd.com/fitness-exercise/ankle-fracture">https://www.webmd.com/fitness-exercise/ankle-fracture</a></li>
+									<p class="diagnosis-item">There is a {this.state.data.diagnosesProbabilities[1]}% chance that you have a <strong>{this.state.data.diagnosesNames[1]}</strong></p>
+									<p class="diagnosis-item">{this.state.data.diagnosesHints[1]}</p>
+									<br />
+									<p class="diagnosis-item">There is a {this.state.data.diagnosesProbabilities[2]}% chance that you have a <strong>{this.state.data.diagnosesNames[2]}</strong></p>
+									<p class="diagnosis-item">{this.state.data.diagnosesHints[2]}</p>
 								</ul>
 							</div>
 						</div>

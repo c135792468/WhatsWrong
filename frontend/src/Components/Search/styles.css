@@ -165,3 +165,144 @@ ul {
 #emptyDiagnosis {
 	display: none;
 }
+
+#showingDiagnosis {
+	display: flex;
+  	height: 100vH;
+  	flex-direction: column;
+}
+
+/*#research-input {
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 175px;
+	height: 25px;
+	border-radius: 30px;
+	padding-top: 2px;
+	padding-left: 15px;
+	font-size: 17px;
+	user-select: none;
+	font-family: 'Acme', sans-serif;
+	margin-top: 10px;
+	margin-left: 10px;
+}*/
+
+#diagnosis-title {
+	color: white;
+	font-size: 50px;
+	font-family: 'Acme', sans-serif;
+	margin: 20px 0;
+	align-self: center;
+}
+
+#diagnosis {
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	flex-direction: column;
+	border: 1px solid white;
+	border-radius: 5px;
+	align-self: center;
+	padding: 20px 30px 30px 30px;
+	margin-bottom: 40px;
+}
+
+#calculated-title {
+	font-size: 20px;
+}
+
+.diagnosis-list {
+	margin-bottom: 10px;
+}
+
+.dropdown input {
+	position: absolute;
+	opacity: 0;
+	z-index: -1;
+}
+
+.diagnosis-item {
+	font-size: 17px;
+	margin: 10px 0;
+	line-height: 1.5;
+}
+
+.dropdown {
+	position: relative;
+	width: 88%;
+	overflow: hidden;
+	margin-top: 10px;
+}
+
+.dropdown .more-diagnosis {
+	max-height: 0;
+	overflow: hidden;
+  	background: #f5f5f5;
+  	-webkit-transition: all .2s ease-in;
+  	-o-transition: all .2s ease-in;
+  	transition: all .2s ease-in;
+  	border-radius: 5px;
+}
+
+.dropdown input:checked ~ .more-diagnosis {
+	max-height: 100px;
+	padding: 10px 0 20px 0;
+	overflow-y: auto;
+	border: 1px solid #878787;
+}
+
+.dropdown input[type=checkbox] + label::after {
+	content: "+";
+}
+
+.dropdown label::after {
+	position: absolute;
+  	right: 0;
+  	top: 0;
+  	display: block;
+  	width: 3em;
+  	line-height: 2.4;
+  	text-align: center;
+  	-webkit-transition: all .2s;
+  	-o-transition: all .2s;
+  	transition: all .2s;
+}
+
+.dropdown input[type=checkbox]:checked + label::after {
+	transform: rotate(315deg);
+}
+
+.dropdown .more-diagnosis-list {
+	width: 86%;
+}
+
+.dropdown label {
+	position: relative;
+  	display: block;
+  	color: white;
+  	font-weight: bold;
+  	background: #878787;
+  	text-align: center;
+  	padding: 12px 0px;
+  	cursor: pointer;
+  	border-radius: 5px;
+  	font-size: 18px;
+}
+
+.dropdown li {
+	font-size: 1.1em;
+}
+
+.disclaimer {
+	align-self: center;
+	text-align: center;
+	margin: 10px 40px 0px 40px;
+	margin-top: 15px;
+	font-size: 10px
+}
+
+.disclaimer .title {
+	font-size: 13px;
+}
