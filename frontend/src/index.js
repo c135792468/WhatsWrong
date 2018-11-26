@@ -7,7 +7,6 @@ import './index.css';
 import Search from './components/Search/Search';
 import Symptoms from './components/Symptoms/Symptoms';
 import Diagnosis from './components/Diagnosis/Diagnosis';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(

@@ -110,6 +110,8 @@ ul {
 	margin-bottom: 20px;
 }
 
+/* Symptoms Section */
+
 #showingSymptoms {
 	background-color: white;
 	display: flex;
@@ -155,5 +157,11 @@ ul {
 }
 
 #emptySymptoms {
+	display: none;
+}
+
+/* Diagnosis Section */
+
+#emptyDiagnosis {
 	display: none;
 }
