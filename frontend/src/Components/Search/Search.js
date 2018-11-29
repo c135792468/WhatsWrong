@@ -333,7 +333,6 @@ class Search extends Component {
 						</div>
 					</div>
 				</div>
-				<button><Link to="/symptoms">Symptoms Page</Link></button>
 			</div>
 		);
 	}

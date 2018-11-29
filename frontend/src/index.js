@@ -13,8 +13,6 @@ ReactDOM.render(
 		<Router history={history}>
 			<React.Fragment>
 				<Route exact path={'/'} component={Search} key="Search" />
-				{/* <Route path={'/symptoms'} component={Symptoms} key="Symptoms" />
-				<Route path={'/diagnosis'} component={Diagnosis} key="Diagnosis" /> */}
 			</React.Fragment>
 		</Router>
 	</Provider>,

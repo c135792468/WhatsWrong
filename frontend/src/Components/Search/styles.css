@@ -53,6 +53,9 @@
 	font-size: 20px;
 	width: 150px;
 	margin-right: 30px;
+	background-color: white;
+    border-left: 1px solid #0ebeff;
+    -webkit-appearance: menulist;
 }
 
 #age-input { 
@@ -105,9 +108,39 @@
 	color: #4CAF50;
 }
 
-ul {
-	list-style: none;
-	margin-bottom: 20px;
+@media (min-width: 450px) and (max-width: 600px) {
+	#originalTitleView {
+		font-size: 60px;
+	}
+
+	#originalInputView {
+		width: 60%;
+		height: 40px;
+		border-radius: 30px;
+		padding-left: 30px;
+		font-size: 25px;
+		user-select: none;
+		font-family: 'Acme', sans-serif;
+	}
+}
+
+@media (max-width: 449px) {
+	#originalTitleView {
+		color: white;
+		font-size: 40px;
+		font-family: 'Acme', sans-serif;
+		margin: 20px 0;
+	}
+
+	#originalInputView {
+		width: 70%;
+		height: 30px;
+		border-radius: 30px;
+		padding-left: 30px;
+		font-size: 25px;
+		user-select: none;
+		font-family: 'Acme', sans-serif;
+	}
 }
 
 /* Symptoms Section */
@@ -136,6 +169,11 @@ ul {
 
 .symptom {
 	margin-bottom: 10px;
+}
+
+ul {
+	list-style: none;
+	margin-bottom: 20px;
 }
 
 #submit-button {
