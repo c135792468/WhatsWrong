@@ -14,8 +14,10 @@
 	margin-bottom: 10px;
 }
 
-.checkbox {
-	margin-right: 20px;
+input[type="checkbox" i] {
+    -webkit-appearance: checkbox;
+    box-sizing: border-box;
+    margin-right: 15px;
 }
 
 #apply-title {
