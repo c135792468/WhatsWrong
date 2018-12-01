@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './styles.css';
+import './searchStyles.css';
+import './symptomsStyles.css';
+import './diagnosisStyles.css';
 
 class Search extends Component {
 	constructor() {

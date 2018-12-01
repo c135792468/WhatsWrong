@@ -1,0 +1,54 @@
+/* Symptoms Section */
+
+#showingSymptoms {
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40%;
+	flex-direction: column;
+	border: 1px solid white;
+	border-radius: 5px;
+	align-self: center;
+	padding: 20px 30px 30px 30px;
+	margin-bottom: 10px;
+}
+
+.checkbox {
+	margin-right: 20px;
+}
+
+#apply-title {
+	font-size: 20px;
+}
+
+.symptom {
+	margin-bottom: 10px;
+}
+
+ul {
+	list-style: none;
+	margin-bottom: 20px;
+}
+
+#submit-button {
+	margin-top: 10px;
+	border: none;
+	padding: 5px 75px;
+	border-radius: 5px;
+	font-size: 22px;
+	font-family: 'Acme', sans-serif;
+	color: white;
+	background-color: #66AFFF;
+	font-weight: bold;
+}
+
+#submit-button:hover {
+	cursor: pointer;
+	background-color: #ededed;
+	color: #66AFFF;
+}
+
+#emptySymptoms {
+	display: none;
+}
