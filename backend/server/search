@@ -85,7 +85,7 @@ def search():
     #using try except to handle potential database errors
     try:
         #executing the statement
-        mycursor.execute(strSQLlike)
+        mycursor.execute(stringSQLlike)
         #storing the results in an array
         myresult = mycursor.fetchall()
     
