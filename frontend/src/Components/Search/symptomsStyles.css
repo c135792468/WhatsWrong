@@ -76,6 +76,10 @@ ul {
 	}
 
 	ul {
-		padding-left: 10px;
+		padding-left: 7px;
+	}
+
+	input[type="checkbox" i] {
+	    margin-right: 10px;
 	}
 }

@@ -47,6 +47,14 @@
 	margin-bottom: 40px;
 }
 
+/*#diagnosis ul {
+	padding-left: 0px;
+}*/
+
+#main-diagnosis {
+	padding-left: 0;
+}
+
 #calculated-title {
 	font-size: 20px;
 }
@@ -85,35 +93,15 @@
 }
 
 .dropdown input:checked ~ .more-diagnosis {
-	max-height: 100px;
+	max-height: 180px;
 	padding: 10px 0 20px 0;
 	overflow-y: auto;
 	border: 1px solid #878787;
 }
 
-.dropdown input[type=checkbox] + label::after {
-	content: "+";
-}
-
-.dropdown label::after {
-	position: absolute;
-  	right: 0;
-  	top: 0;
-  	display: block;
-  	width: 3em;
-  	line-height: 2.4;
-  	text-align: center;
-  	-webkit-transition: all .2s;
-  	-o-transition: all .2s;
-  	transition: all .2s;
-}
-
-.dropdown input[type=checkbox]:checked + label::after {
-	transform: rotate(315deg);
-}
-
 .dropdown .more-diagnosis-list {
 	width: 86%;
+	padding-left: 30px;
 }
 
 .dropdown label {
@@ -143,4 +131,65 @@
 
 .disclaimer .title {
 	font-size: 13px;
+}
+
+@media (min-width: 950px) {
+	.dropdown input[type=checkbox] + label::after {
+		content: "+";
+	}
+
+	.dropdown label::after {
+		position: absolute;
+	  	right: 0;
+	  	top: 0;
+	  	display: block;
+	  	width: 3em;
+	  	line-height: 2.4;
+	  	text-align: center;
+	  	-webkit-transition: all .2s;
+	  	-o-transition: all .2s;
+	  	transition: all .2s;
+	}
+
+	.dropdown input[type=checkbox]:checked + label::after {
+		transform: rotate(315deg);
+	}
+}
+
+@media (min-width: 700px) and (max-width: 1000px) {
+	#diagnosis {
+		width: 70%;
+	}
+}
+
+@media (min-width: 400px) and (max-width: 699px) {
+	#diagnosis {
+		width: 80%;
+	}
+
+	.dropdown {
+		width: 95%;
+	}
+}
+
+@media (min-width: 300px) and (max-width: 600px) {
+	.diagnosis-item {
+		font-size: 15px;
+	}
+}
+
+@media (min-width: 300px) and (max-width: 399px) {
+	#diagnosis {
+		width: 80%;
+	}
+}
+
+@media (min-width: 300px) and (max-width: 450px) {
+	#diagnosis {
+		width: 80%;
+	}
+
+	.dropdown label {
+	  	font-size: 15px;
+	}
 }

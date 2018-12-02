@@ -311,7 +311,7 @@ class Search extends Component {
 					<div id="diagnosis">
 						<h3 id="calculated-title">Here is what we calculated:</h3>
 						<div id="diagnosis-list">
-							<ul>
+							<ul id="main-diagnosis">
 								<p class="diagnosis-item">There is a {this.state.data.diagnosesProbabilities[0]}% chance that you have a <strong>{this.state.data.diagnosesNames[0]}</strong></p>
 								<p class="diagnosis-item">{this.state.data.diagnosesHints[0]}</p>
 							</ul>
@@ -323,7 +323,7 @@ class Search extends Component {
 								<ul class="more-diagnosis-list">
 									<p class="diagnosis-item">There is a {this.state.data.diagnosesProbabilities[1]}% chance that you have a <strong>{this.state.data.diagnosesNames[1]}</strong></p>
 									<p class="diagnosis-item">{this.state.data.diagnosesHints[1]}</p>
-									<br />
+									<hr />
 									<p class="diagnosis-item">There is a {this.state.data.diagnosesProbabilities[2]}% chance that you have a <strong>{this.state.data.diagnosesNames[2]}</strong></p>
 									<p class="diagnosis-item">{this.state.data.diagnosesHints[2]}</p>
 								</ul>
