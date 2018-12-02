@@ -1,0 +1,109 @@
+#this is the python search function used for our advanced medical search
+#this function searches our database using the common name as well as the medical name
+#then returns the symptom information to the front end
+
+def search():
+##omitted real database conector login credentials
+##    mydb = mysql.connector.connect(
+##      host="fake",
+##      user="fake",
+##      passwd="fake",
+##      database="fake"
+##    )
+
+
+
+
+    #mysql cursor object
+    mycursor = mydb.cursor()
+
+    #android sends json array objects and react sends a regular json
+    #thats why there is an if statement checking the objects
+    
+    ##use json dumps for android
+    #can use the search key for react
+    #have to check type because react and android send different objects
+    jsonResp=request.get_json()
+    if type(jsonResp) is list:
+        #in order to read the object, have to convert the json array that was sent to a json obj, then get the data
+        #for each key, other wise we will  run into python errors
+
+        #dumps converts the json to a string
+        #we can take the first object because we know the android app will only send one object
+        jsonString=json.dumps(jsonResp[0])
+        #loads converts the string to a pyython json
+        jsonObj = json.loads(jsonString)
+        #get thhe data from the json
+        stringSearch = jsonObj['search']
+        stringSex= jsonObj['gender']
+        numAge = jsonObj['age']
+    else:
+        #the json is much simpler from react
+        #we can use the search keys directly
+        stringSearch = jsonResp['search']
+        stringSex= jsonResp['gender']
+        numAge = jsonResp['age']
+
+    #tokenizing the search term by using the split function with the separator as a space
+    #this will take each word that is in the search phrase and store it in the array
+    #stringArrSymp
+    stringArrSymp =stringSearch.split(' ')
+
+    #counter for the indexes
+    numCount=0
+
+    #replacing the apostrophes (if there are any) with double apostrophes because the single apostrophes
+    #will cause errors in the sql statement that we use later
+    for stringToken in stringArrSymp:
+        stringArrSymp[numCount]=stringArrSymp[numCount].replace("'", "''")
+        numCount=numCount+1
+
+    #now we create the like part of the sql statement that will be responsible for doing the filtering
+    
+    stringSQLlike = ''
+
+    #this loop iterates through the array and concatenates the like part of the sql statement
+    #what the result will be is each word in the search phrase will be used in looking for an item
+    #in our symptoms table
+    for numCt in range(len(stringArrSymp)):
+        if numCt==len(stringArrSymp)-1:
+            break
+        else:
+            stringSQLlike = stringSQLlike +" (common_name LIKE '%"+ stringArrSymp[numCt] +"%' OR symptom_name LIKE '%"+ stringArrSymp[numCt] +"%')  AND "
+            
+    #concatenating the final search term
+    stringSQLlike = stringSQLlike + " (common_name LIKE '%" + stringArrSymp[len(stringArrSymp)-1] +"%' OR symptom_name LIKE '%" + stringArrSymp[len(stringArrSymp)-1] +"%') AND (sex = 'both' or sex ='" +sex +"')"
+    
+
+    #adding the select portion of the sql statement to the front of the string
+    stringSQLlike = ("SELECT SID, symptom_name, common_name, sex, seriousness, img_url " +
+            " FROM infermedica.symptom_data WHERE " + stringSQLlike)
+
+    #we have to use a json array regardless of what kind of result because if the android code sends a json array to the server
+    #the server must send back a json array or the android code will run into errors
+    jsonArrData = []
+    #using try except to handle potential database errors
+    try:
+        #executing the statement
+        mycursor.execute(stringSQLlike)
+        #storing the results in an array
+        myresult = mycursor.fetchall()
+    
+        if len(myresult) ==0:
+            #if there are no results we have to let the front end know that, so put it in the first sid
+            #sid = Symptom ID, symptom id is used in our database as a primary key for symptoms
+            jsonArrData.append({'SID':'no_results'})
+            return jsonify(jsonArrData)
+        
+        numCt=0
+        #this for loop iterates through our results array, and adds  each symptom and its information to the json array which will
+        #be sent back to the front end
+        for result in myresult:
+            jsonArrData.append({'SID': myresult[numCt][0], 'symptom_name': myresult[numCt][1],  'common_name': myresult[numCt][2], 'sex': myresult[numCt][3], 'seriousness': myresult[numCt][4], 'img_url': myresult[numCt][5]})
+            numCt=numCt+1
+            
+        return jsonify(jsonArrData)
+    except:
+        #if there is an error, send it back to the front end
+        jsonArrData.append({'SID':'error_python_error'})
+        return jsonify(jsonArrData)
