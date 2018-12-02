@@ -1,0 +1,16 @@
+#original python code by kris, modifications by michael
+#this code parses the json of conditions received from infermedica and creates an sql statement that we use to 
+#populate our conditions table
+import json
+f = open('conditions.json','r')
+content = f.read()
+print(content)
+f.close()
+
+data = json.loads(content)
+
+with open("testfile_.txt", "w") as output:
+    for i in data:
+    	cat = i['categories']
+    	#print(type(str(cat[0])))  ###outputs all categories
+    	output.write( "('" +i['id'] + "', '" + i['name'].replace("'", "''") + "', '"+ i['common_name'].replace("'", "''")+"', '" + i['sex_filter'] + "', '"+ str(cat[0]).replace("'", "''") + "', '"+ i['severity'].replace("'", "''") + "', '" + i['extras'].get('hint').replace("'", "''") +"')," + '\n')	
