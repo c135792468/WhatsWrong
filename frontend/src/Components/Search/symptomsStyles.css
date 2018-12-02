@@ -5,13 +5,17 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 40%;
+	width: 50%;
 	flex-direction: column;
 	border: 1px solid white;
 	border-radius: 5px;
 	align-self: center;
 	padding: 20px 30px 30px 30px;
 	margin-bottom: 10px;
+}
+
+#emptySymptoms {
+	display: none;
 }
 
 input[type="checkbox" i] {
@@ -31,6 +35,7 @@ input[type="checkbox" i] {
 ul {
 	list-style: none;
 	margin-bottom: 20px;
+	line-height: 150%;
 }
 
 #submit-button {
@@ -51,6 +56,26 @@ ul {
 	color: #66AFFF;
 }
 
-#emptySymptoms {
-	display: none;
+@media (min-width: 800px) and (max-width: 1200px) {
+	#showingSymptoms {
+		width: 60%;
+	}
+}
+
+@media (min-width: 500px) and (max-width: 800px) {
+	#showingSymptoms {
+		width: 75%;
+		padding: 20px 20px 30px 20px;
+	}
+}
+
+@media (min-width: 300px) and (max-width: 500px) {
+	#showingSymptoms {
+		width: 80%;
+		padding: 20px 20px 30px 20px;
+	}
+
+	ul {
+		padding-left: 10px;
+	}
 }

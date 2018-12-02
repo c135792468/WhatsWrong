@@ -335,6 +335,10 @@ class Search extends Component {
 						</div>
 					</div>
 				</div>
+
+				<div id="screenTooSmall">
+					<h1> Screen size is too small. Increase window size. </h1>
+				</div>
 			</div>
 		);
 	}
