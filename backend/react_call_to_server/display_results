@@ -1,0 +1,11 @@
+//this was the code that was written for the MVP presentation, initially we had issues getting the resuls to display
+/this was the temporary solution
+</div>
+				<input id="submit-button" type="submit" value="SEARCH" onClick={this.handleSubmit.bind(this)} /> <br/>
+					<div>
+					<ul>
+					{this.state.data.symptoms.map((item,index) => 
+						<li key={index}>{item}</li>
+					)}
+					</ul>
+					</div>

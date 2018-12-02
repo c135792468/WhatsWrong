@@ -1,0 +1,174 @@
+//this is the code used to test android calls to the server
+
+package com.example.kali.myapplication;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
+import java.io.UnsupportedEncodingException;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.android.volley.toolbox.StringRequest;
+import com.example.kali.myapplication.R;
+import android.util.Log;
+import java.io.IOException;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        final TextView mTextView = (TextView) findViewById(R.id.textView);
+
+
+// ...
+
+ //Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://18.191.248.57:80/search";
+        final String gender = "Male";
+       final  String age = "21";
+
+// Request a string response from the provided URL.
+        final JSONObject json = new JSONObject();
+        try {
+            json.put("search", "hand");
+            json.put("gender", "male");
+            json.put("age", "25");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JSONArray ja = new JSONArray();
+        final JSONArray jd = new JSONArray();
+
+        ja.put(json);
+        String a = json.toString();
+        mTextView.setText(ja.toString());
+
+        JsonArrayRequest JsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, ja,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+
+                        //mTextView.setText(response.toString());
+
+                        try {
+                            for (int i=0;i<response.length();i++)
+                            {
+                                JSONObject jsonObject=response.getJSONObject(i);
+
+                                String SID =jsonObject.getString("SID");
+                                //have to check for errors or no results otherwise the program will crash
+                                boolean correct_noresults = "no_results".equals(SID);
+                                boolean py_error = "error_python_error".equals(SID);
+                                if( correct_noresults || py_error )
+                                {
+                                    Log.i("err", SID);
+                                }
+                                else{
+                                    String common_name=jsonObject.getString("common_name");
+                                    String sid=jsonObject.getString("SID");
+                                    Log.i("cn", common_name);
+                                    Log.i("sid", SID);
+
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                mTextView.setText(error.toString());
+            }
+        });
+
+
+ //Add the request to the RequestQueue.
+        queue.add(JsonArrayRequest);
+
+
+
+
+///////////////////////////////////////////////////////////////////////////
+        JSONObject tjson = new JSONObject();
+        try {
+            tjson.put("SID", "s_1190");
+            tjson.put("gender", gender);
+            tjson.put("age", age);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        jd.put(tjson);
+
+        JSONObject tjson2 = new JSONObject();
+        try {
+            tjson2.put("SID", "s_1192");
+            tjson2.put("gender", gender);
+            tjson2.put("age", age);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        jd.put(tjson2);
+
+        JSONObject tjson3 = new JSONObject();
+        try {
+            tjson3.put("dict", "parkinson's");
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        final JSONArray jd2 = new JSONArray();
+        jd2.put(tjson3);
+        //RequestQueue queue2 = Volley.newRequestQueue(this);
+       // url = "http://18.191.248.57:80/diagnosis";
+
+        url = "http://18.191.248.57:80/dct";
+        JsonArrayRequest JsonArrayRequest2 = new JsonArrayRequest(Request.Method.POST, url, jd2,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+
+                        mTextView.setText(response.toString());
+
+
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                mTextView.setText(error.toString());
+            }
+        });
+
+
+        //Add the request to the RequestQueue.
+        queue.add(JsonArrayRequest2);
+
+
+    }
+}

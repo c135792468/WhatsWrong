@@ -1,0 +1,9 @@
+//first react call to the server, very basic just logging the results to the console
+ var request = require('axios');
+			axios.post('http://18.191.248.57:80/search',js)
+			  .then(function (response) {
+				console.log(response);
+			  })
+			  .catch(function (error) {
+				console.log(error);
+			  }); 

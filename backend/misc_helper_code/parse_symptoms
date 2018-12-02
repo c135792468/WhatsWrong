@@ -1,0 +1,17 @@
+#this is python code used to parse the json of symptoms received from infermedica
+#this code takes that json and converts it into an sql statement that is used to populate our symptoms table
+import json
+f=open('sympjs.json','r')
+content = f.read()
+#print(content)
+f.close()
+data = json.loads(content)
+with open("insert_into_symp_data.txt", "w") as output:
+    for i in data:
+        #print(i['id'] + ' ' + i['sex_filter'] + ' ' + i['name'] + ' ' + i['seriousness'] )
+        if i['image_url']!= None:
+            output.write( "('" +i['id'] + "', '" + i['name'].replace("'", "''") + "', '"+ i['common_name'].replace("'", "''")+"', '"+ i['sex_filter'] + "', '" + i['seriousness'] + "', '" + i['image_url'].replace("'", "''")+"')," + '\n')
+        else:
+            output.write( "('" +i['id'] + "', '" + i['name'].replace("'", "''") + "', '"+ i['common_name'].replace("'", "''")+"', '"+ i['sex_filter'] + "', '" + i['seriousness'] + "', NULL)," + '\n')
+            #print(i['image_url'])
+        
