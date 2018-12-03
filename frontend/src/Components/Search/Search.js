@@ -4,6 +4,7 @@ import axios from 'axios';
 import './searchStyles.css';
 import './symptomsStyles.css';
 import './diagnosisStyles.css';
+import './modal.css';
 
 class Search extends Component {
 	constructor() {
@@ -307,7 +308,27 @@ class Search extends Component {
 	render(){
 		return(
 			<div className="Search">
+
 				<h1 id={this.state.titleView}>WHAT'S WRONG?</h1>
+
+				<div className="Modal">
+					<button data-toggle="modal" data-target="#myModal" id="modalButton">How To Use</button>
+
+					<div id="myModal" className="modal fade" role="dialog">
+			          	<div className="modal-dialog">
+			           		<div className="modal-content">
+			              		<div className="modal-body">
+			                  		<h4>Create Event</h4>
+			                  		<input type="submit" value="Close" data-dismiss="modal"/>
+			              		</div>
+			            	</div>
+			          	</div>
+			        </div>
+
+		        </div>
+
+		        <br/>
+
 				<input className="text" id={this.state.inputView} type="text" placeholder="Type in body part..." onChange={this.handleSearchKey.bind(this)} value={this.state.data.searchKey}/> <br/>
 				<div id={this.state.genderAgeView}>
 					<select id="gender-input" onChange={this.handleGender.bind(this)} value={this.state.data.gender}>
@@ -326,7 +347,6 @@ class Search extends Component {
 				<div id={this.state.symptomsView}>
 					<h3 id="apply-title">Check all that apply</h3>
 					<div id="symptoms-list">
-						{/*  <input class="symptom" type="checkbox" name="symptom1" value="symptom1" /> Symptom 1<br/> */}
 						<ul>
 							{this.state.data.symptoms.map((item,index) => 
 								<li class="symptom"><input class="checkbox" type="checkbox" class="SID" value={index}/>{item}</li>

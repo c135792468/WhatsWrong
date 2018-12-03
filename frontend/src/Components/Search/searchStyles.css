@@ -34,20 +34,27 @@
 	font-family: 'Acme', sans-serif;
 }
 
-#minimizedInputView {
-	display: none;
-	/*width: 30%;
-	height: 30px;
-	border-radius: 30px;
-	padding-left: 15px;
-	padding-top: 5px;
-	font-size: 15px;
-	user-select: none;
-	font-family: 'Acme', sans-serif;*/
-}
-
 #originalInputView:focus, #minimizedInputView:focus {
 	outline: none;
+}
+
+#modalButton {
+	border: 1px solid grey;
+	padding: 5px 75px;
+	border-radius: 5px;
+	font-size: 22px;
+	font-family: 'Acme', sans-serif;
+	color: #4CAF50;
+	background-color: white;
+	font-weight: bold;
+	outline: none;
+}
+
+#modalButton:hover {
+	cursor: pointer;
+	background-color: #4CAF50;
+	color: white;
+	transition: 0.3s;
 }
 
 #gender-input {
@@ -81,7 +88,7 @@
   	margin-bottom: 15px;
 }
 
-#minimizedGenderAgeView, #emptyNewSearch {
+#minimizedGenderAgeView, #emptyNewSearch, #minimizedInputView, #minimizedSearchButtonView  {
 	display: none;
 }
 
@@ -96,23 +103,11 @@
 	font-weight: bold;
 }
 
-#minimizedSearchButtonView {
-	display: none;
-	/*border: none;
-	padding: 7px 40px;
-	border-radius: 5px;
-	font-size: 14px;
-	font-family: 'Acme', sans-serif;
-	color: white;
-	background-color: #4CAF50;
-	font-weight: bold;*/
-}
-
 #originalSearchButtonView:hover, #minimizedSearchButtonView:hover, #showingNewSearch:hover {
 	cursor: pointer;
 	background-color: white;
 	color: #4CAF50;
-	transition: 0.4s;
+	transition: 0.3s;
 }
 
 @media (min-width: 450px) and (max-width: 600px) {
