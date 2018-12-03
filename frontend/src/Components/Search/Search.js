@@ -18,6 +18,7 @@ class Search extends Component {
 			genderAge: false,
 			genderAgeView: "originalGenderAgeView",
 			searchButtonView: "originalSearchButtonView",
+			smartSearchButtonView: "originalSmartSearchButtonView",
 			newSearchView: "emptyNewSearch",
 			symptomsView: "emptySymptoms",
 			diagnosisView: "emptyDiagnosis",
@@ -93,6 +94,7 @@ class Search extends Component {
 				genderAge: true,
 				genderAgeView: "minimizedGenderAgeView",
 				searchButtonView: "minimizedSearchButtonView",
+				smartSearchButtonView: "minimizedSmartSearchButtonView",
 				newSearchView: "showingNewSearch",
 				symptomsView: "showingSymptoms",
 			})
@@ -105,6 +107,7 @@ class Search extends Component {
 				genderAge: false,
 				genderAgeView: "originalGenderAgeView",
 				searchButtonView: "originalSearchButtonView",
+				smartSearchButtonView: "originalSmartSearchButtonView",
 				newSearchView: "emptyNewSearch",
 				symptomsView: "emptySymptoms",
 			})
@@ -166,6 +169,7 @@ class Search extends Component {
 			genderAge: false,
 			genderAgeView: "originalGenderAgeView",
 			searchButtonView: "originalSearchButtonView",
+			smartSearchButtonView: "originalSmartSearchButtonView",
 			newSearchView: "emptyNewSearch",
 			symptomsView: "emptySymptoms",
 			diagnosisView: "emptyDiagnosis",
@@ -342,7 +346,8 @@ class Search extends Component {
 					</select><br/>
 					<input className="text" id="age-input" type="text" placeholder="Age" onChange={this.handleAge.bind(this)} value={this.state.data.age} />
 				</div>
-				<input id={this.state.searchButtonView} type="submit" value="SEARCH" onClick={this.handleSubmit.bind(this)} /> <br/>
+				<input id={this.state.searchButtonView} type="submit" value="SIMPLE SEARCH" onClick={this.handleSubmit.bind(this)} /> 
+				<input id={this.state.smartSearchButtonView} type="submit" value="SMART SEARCH" onClick={this.handleSubmit.bind(this)} /> <br/>
 				
 
 				<input id={this.state.newSearchView} type="submit" value="NEWSEARCH" onClick={this.handleNewSearch.bind(this)} /> <br/>

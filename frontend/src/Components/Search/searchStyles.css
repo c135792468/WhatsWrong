@@ -69,7 +69,7 @@
   	margin-bottom: 15px;
 }
 
-#minimizedGenderAgeView, #emptyNewSearch, #minimizedInputView, #minimizedSearchButtonView  {
+#minimizedGenderAgeView, #emptyNewSearch, #minimizedInputView, #minimizedSearchButtonView, #minimizedSmartSearchButtonView  {
 	display: none;
 }
 
@@ -82,6 +82,25 @@
 	color: white;
 	background-color: #4CAF50;
 	font-weight: bold;
+}
+
+#originalSmartSearchButtonView {
+	border: none;
+	padding: 5px 75px;
+	border-radius: 5px;
+	font-size: 22px;
+	font-family: 'Acme', sans-serif;
+	color: white;
+	background-color: #ff6a00;
+	font-weight: bold;
+	margin-top: 15px;
+}
+
+#originalSmartSearchButtonView:hover {
+	cursor: pointer;
+	background-color: white;
+	color: #ff6a00;
+	transition: 0.3s;
 }
 
 #originalSearchButtonView:hover, #minimizedSearchButtonView:hover, #showingNewSearch:hover {
