@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Modal from './modal.js';
 import './searchStyles.css';
 import './symptomsStyles.css';
 import './diagnosisStyles.css';
-import './modal.css';
 
 class Search extends Component {
 	constructor() {
@@ -312,30 +312,10 @@ class Search extends Component {
 	render(){
 		return(
 			<div className="Search">
-				<button data-toggle="modal" data-target="#myModal" id="modalButton">How To Use</button>
+				<Modal />
+
 				<h1 id={this.state.titleView}>WHAT'S WRONG?</h1>
 
-				<div id="myModal" className="modal fade" role="dialog">
-			        <div className="modal-dialog">
-			        	<div className="modal-content">
-			            	<div className="modal-body">
-			                  	<h3>How to Use WhatsWrong?</h3>
-			                  	<h4>For simple search:</h4>
-			                  	<ol>
-			                  		<li>Enter a simple body part. Select your gender and enter age.</li>
-				                  	<img src="simp-search1.png" />
-			                  		<li>Select the symptoms that apply to you.</li>
-			                  		<img src="simp-search2.png" />
-			                  		<li>See the possible diagnoses along with percentage and advice.</li>
-			                  		<img src="simp-search3.png" />
-			                  	</ol>
-			                  	<button type="submit" data-dismiss="modal" id="closeButton">Close</button>
-			              	</div>
-			            </div>
-			        </div>
-			    </div>
-
-		        <br/>
 
 				<input className="text" id={this.state.inputView} type="text" placeholder="Type in body part..." onChange={this.handleSearchKey.bind(this)} value={this.state.data.searchKey}/> <br/>
 				<div id={this.state.genderAgeView}>
