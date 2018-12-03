@@ -38,25 +38,6 @@
 	outline: none;
 }
 
-#modalButton {
-	border: 1px solid grey;
-	padding: 5px 75px;
-	border-radius: 5px;
-	font-size: 22px;
-	font-family: 'Acme', sans-serif;
-	color: #4CAF50;
-	background-color: white;
-	font-weight: bold;
-	outline: none;
-}
-
-#modalButton:hover {
-	cursor: pointer;
-	background-color: #4CAF50;
-	color: white;
-	transition: 0.3s;
-}
-
 #gender-input {
 	height: 30px;
 	font-family: 'Acme', sans-serif;
