@@ -186,7 +186,7 @@
 	}
 }
 
-@media (min-width: 651px) and (max-width: 800px) {
+@media (min-width: 551px) and (max-width: 800px) {
 	.diagnosis-item {
 		font-size: 16px;
 	}

@@ -17,6 +17,7 @@ class Search extends Component {
 			genderAge: false,
 			genderAgeView: "originalGenderAgeView",
 			searchButtonView: "originalSearchButtonView",
+			newSearchView: "emptyNewSearch",
 			symptomsView: "emptySymptoms",
 			diagnosisView: "emptyDiagnosis",
 			data: {
@@ -91,8 +92,8 @@ class Search extends Component {
 				genderAge: true,
 				genderAgeView: "minimizedGenderAgeView",
 				searchButtonView: "minimizedSearchButtonView",
+				newSearchView: "showingNewSearch",
 				symptomsView: "showingSymptoms",
-
 			})
 		} else {
 			this.setState({
@@ -103,6 +104,7 @@ class Search extends Component {
 				genderAge: false,
 				genderAgeView: "originalGenderAgeView",
 				searchButtonView: "originalSearchButtonView",
+				newSearchView: "emptyNewSearch",
 				symptomsView: "emptySymptoms",
 			})
 		}
@@ -152,6 +154,32 @@ class Search extends Component {
 			.catch((error) => {
 				console.log(error);
 			});
+	}
+
+	handleNewSearch(event) {
+		this.setState ({
+			title: false,
+			titleView: "originalTitleView",
+			input: false,
+			inputView: "originalInputView",
+			genderAge: false,
+			genderAgeView: "originalGenderAgeView",
+			searchButtonView: "originalSearchButtonView",
+			newSearchView: "emptyNewSearch",
+			symptomsView: "emptySymptoms",
+			diagnosisView: "emptyDiagnosis",
+			data: {
+				searchKey: '',
+				gender: '',
+				age: '',
+				search: '',
+				symptoms: [],
+				SID: '',
+				diagnosesNames: [],
+				diagnosesProbabilities: [],
+				diagnosesHints: [],
+			}
+		})
 	}
 
 	handleDiagnosesNames(event) {
@@ -291,6 +319,9 @@ class Search extends Component {
 				</div>
 				<input id={this.state.searchButtonView} type="submit" value="SEARCH" onClick={this.handleSubmit.bind(this)} /> <br/>
 				
+
+				<input id={this.state.newSearchView} type="submit" value="NEWSEARCH" onClick={this.handleNewSearch.bind(this)} /> <br/>
+
 
 				<div id={this.state.symptomsView}>
 					<h3 id="apply-title">Check all that apply</h3>

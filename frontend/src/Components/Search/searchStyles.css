@@ -81,11 +81,11 @@
   	margin-bottom: 15px;
 }
 
-#minimizedGenderAgeView {
+#minimizedGenderAgeView, #emptyNewSearch {
 	display: none;
 }
 
-#originalSearchButtonView {
+#originalSearchButtonView, #showingNewSearch {
 	border: none;
 	padding: 5px 75px;
 	border-radius: 5px;
@@ -108,10 +108,11 @@
 	font-weight: bold;*/
 }
 
-#originalSearchButtonView:hover, #minimizedSearchButtonView:hover {
+#originalSearchButtonView:hover, #minimizedSearchButtonView:hover, #showingNewSearch:hover {
 	cursor: pointer;
 	background-color: white;
 	color: #4CAF50;
+	transition: 0.4s;
 }
 
 @media (min-width: 450px) and (max-width: 600px) {
