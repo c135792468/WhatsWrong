@@ -307,7 +307,6 @@ class Search extends Component {
 
 
 				<div id={this.state.diagnosisView}>
-					<h1 id="diagnosis-title">DIAGNOSIS</h1>
 					<div id="diagnosis">
 						<h3 id="calculated-title">Here is what we calculated:</h3>
 						<div id="diagnosis-list">
