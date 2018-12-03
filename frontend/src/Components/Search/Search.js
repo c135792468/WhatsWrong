@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Modal from './modal.js';
+import Modal from './Modal.js';
 import './searchStyles.css';
 import './symptomsStyles.css';
 import './diagnosisStyles.css';
@@ -114,7 +114,7 @@ class Search extends Component {
 		}
 	}
 
-	handleSubmit(event) {
+	handleSimpleSearch(event) {
 		event.preventDefault();
 
 		this.setState({
@@ -132,6 +132,52 @@ class Search extends Component {
 			  
 		var request = require('axios');
 		axios.post('http://18.191.248.57:80/search', js)
+			.then((response) => {
+				var obj = JSON.stringify(response);
+				var x = JSON.parse(obj);
+				
+				if (x.data.length > 10) {
+					for(var i = 0; i < 10; i++) {
+						symptomNames.push(x.data[i].common_name);
+						symptomSID.push(x.data[i].SID);
+						this.handleSymptoms(symptomNames[i]);
+						this.handleSID(symptomSID[i]);
+					}
+				} else {
+					for(var i = 0; i < x.data.length; i++) {
+						symptomNames.push(x.data[i].common_name);
+						symptomSID.push(x.data[i].SID);
+						this.handleSymptoms(symptomNames[i]);
+						this.handleSID(symptomSID[i]);
+					}
+				}
+
+				this.handleMinimizeSearch();
+			})
+
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
+	handleSmartSearch(event) {
+		event.preventDefault();
+
+		this.setState({
+			data: {
+				...this.state.data,
+				symptoms: [],
+				SID: [],
+			}	
+		})
+
+		var symptomNames = [];
+		var symptomSID = [];
+		var j;
+		var js = {'search': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
+			  
+		var request = require('axios');
+		axios.post('http://18.191.248.57:80/simpsearch', js)
 			.then((response) => {
 				var obj = JSON.stringify(response);
 				var x = JSON.parse(obj);
@@ -316,7 +362,6 @@ class Search extends Component {
 
 				<h1 id={this.state.titleView}>WHAT'S WRONG?</h1>
 
-
 				<input className="text" id={this.state.inputView} type="text" placeholder="Type in body part..." onChange={this.handleSearchKey.bind(this)} value={this.state.data.searchKey}/> <br/>
 				<div id={this.state.genderAgeView}>
 					<select id="gender-input" onChange={this.handleGender.bind(this)} value={this.state.data.gender}>
@@ -326,12 +371,10 @@ class Search extends Component {
 					</select><br/>
 					<input className="text" id="age-input" type="text" placeholder="Age" onChange={this.handleAge.bind(this)} value={this.state.data.age} />
 				</div>
-				<input id={this.state.searchButtonView} type="submit" value="SIMPLE SEARCH" onClick={this.handleSubmit.bind(this)} /> 
-				<input id={this.state.smartSearchButtonView} type="submit" value="SMART SEARCH" onClick={this.handleSubmit.bind(this)} /> <br/>
+				<input id={this.state.searchButtonView} type="submit" value="SIMPLE SEARCH" onClick={this.handleSimpleSearch.bind(this)} /> 
+				<input id={this.state.smartSearchButtonView} type="submit" value="SMART SEARCH" onClick={this.handleSmartSearch.bind(this)} /> <br/>
 				
-
-				<input id={this.state.newSearchView} type="submit" value="NEWSEARCH" onClick={this.handleNewSearch.bind(this)} /> <br/>
-
+				<input id={this.state.newSearchView} type="submit" value="NEW SEARCH" onClick={this.handleNewSearch.bind(this)} /> <br/>
 
 				<div id={this.state.symptomsView}>
 					<h3 id="apply-title">Check all that apply</h3>
@@ -344,7 +387,6 @@ class Search extends Component {
 					</div>
 					<input id="submit-button" type="submit" value="Submit" onClick={this.handleDiagnose.bind(this)} /> <br/>
 				</div>
-
 
 				<div id={this.state.diagnosisView}>
 					<div id="diagnosis">
