@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Modal from './Modal.js';
 import './searchStyles.css';
@@ -28,7 +27,7 @@ class Search extends Component {
 				age: '',
 				search: '',
 				symptoms: [],
-				SID: '',
+				SID: [],
 				diagnosesNames: [],
 				diagnosesProbabilities: [],
 				diagnosesHints: [],
@@ -114,6 +113,38 @@ class Search extends Component {
 		}
 	}
 
+	handleMinimizeSmartSearch() {
+		if(this.state.data.SID.length > 0) {
+			this.setState({
+				title: true,
+				titleView: "minimizedTitleView",
+				input: true,
+				inputView: "minimizedInputView",
+				genderAge: true,
+				genderAgeView: "minimizedGenderAgeView",
+				searchButtonView: "minimizedSearchButtonView",
+				smartSearchButtonView: "minimizedSmartSearchButtonView",
+				newSearchView: "showingNewSearch",
+				symptomsView: "emptySymptoms",
+				diagnosisView: "showingDiagnosis",
+			})
+		} else {
+			this.setState({
+				title: false,
+				titleView: "originialTitleView",
+				input: false,
+				inputView: "originalInputView",
+				genderAge: false,
+				genderAgeView: "originalGenderAgeView",
+				searchButtonView: "originalSearchButtonView",
+				smartSearchButtonView: "originalSmartSearchButtonView",
+				newSearchView: "emptyNewSearch",
+				symptomsView: "showingSymptoms",
+				diagnosisView: "emptyDiagnosis",
+			})
+		}
+	}
+
 	handleSimpleSearch(event) {
 		event.preventDefault();
 
@@ -127,7 +158,6 @@ class Search extends Component {
 
 		var symptomNames = [];
 		var symptomSID = [];
-		var j;
 		var js = {'search': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
 			  
 		var request = require('axios');
@@ -166,14 +196,14 @@ class Search extends Component {
 		this.setState({
 			data: {
 				...this.state.data,
-				symptoms: [],
 				SID: [],
+				diagnosesNames: [],
+				diagnosesProbabilities: [],
+				diagnosesHints: [],
 			}	
 		})
 
-		var symptomNames = [];
 		var symptomSID = [];
-		var j;
 		var js = {'search': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
 			  
 		var request = require('axios');
@@ -184,21 +214,65 @@ class Search extends Component {
 				
 				if (x.data.length > 10) {
 					for(var i = 0; i < 10; i++) {
-						symptomNames.push(x.data[i].common_name);
 						symptomSID.push(x.data[i].SID);
-						this.handleSymptoms(symptomNames[i]);
 						this.handleSID(symptomSID[i]);
 					}
 				} else {
 					for(var i = 0; i < x.data.length; i++) {
-						symptomNames.push(x.data[i].common_name);
 						symptomSID.push(x.data[i].SID);
-						this.handleSymptoms(symptomNames[i]);
 						this.handleSID(symptomSID[i]);
 					}
 				}
 
-				this.handleMinimizeSearch();
+				var jsonList = [];
+
+				for(var i = 0; i < symptomSID.length; i++){
+					var dg = {'SID': symptomSID[i], 'gender':this.state.data.gender, 'age': this.state.data.age };
+					jsonList.push(dg);
+				}
+
+				var diagnosisNames = [];
+				var diagnosisProbabilities = [];
+				var diagnosisHints = [];
+
+				var request2 = require('axios');
+				axios.post('http://18.191.248.57:80/diagnosis', jsonList)
+					.then((response) => {
+						var obj = JSON.stringify(response);
+						var x = JSON.parse(obj);
+
+						console.log(x);
+						
+						if (x.data.length > 3) {
+							for(var i = 0; i < 3; i++) {
+								diagnosisNames.push(x.data[i].common_name);
+								var tempProbability = ((parseFloat(x.data[i].probability) * 100).toFixed(2)).toString();
+								diagnosisProbabilities.push(tempProbability);
+								diagnosisHints.push(x.data[i].hint);
+								this.handleDiagnosesNames(diagnosisNames[i]);
+								this.handleDiagnosesProbabilities(diagnosisProbabilities[i]);
+								this.handleDiagnosesHints(diagnosisHints[i]);
+							}
+						} else {
+							for(var i = 0; i < x.data.length; i++) {
+								diagnosisNames.push(x.data[i].common_name);
+								var tempProbability = ((parseFloat(x.data[i].probability) * 100).toFixed(2)).toString();
+								diagnosisProbabilities.push(tempProbability);
+								diagnosisHints.push(x.data[i].hint);
+								this.handleDiagnosesNames(diagnosisNames[i]);
+								this.handleDiagnosesProbabilities(diagnosisProbabilities[i]);
+								this.handleDiagnosesHints(diagnosisHints[i]);
+							}
+						}
+					})
+
+					.catch((error) => {
+						console.log(error);
+					});
+
+					console.log(this.state.data);
+
+					this.handleMinimizeSmartSearch();
 			})
 
 			.catch((error) => {
