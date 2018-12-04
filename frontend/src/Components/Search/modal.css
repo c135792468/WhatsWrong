@@ -174,9 +174,9 @@
   outline: none;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   margin-top: 10px;
-  margin-right: 20px;
+  margin-left: 20px;
 }
 
 #modalButton:hover {

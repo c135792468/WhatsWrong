@@ -1,0 +1,64 @@
+#dictionaryButton {
+  border: 1px solid #146eff;
+  padding: 5px 30px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: 'Acme', sans-serif;
+  color: white;
+  background-color: #146eff;
+  font-weight: bold;
+  outline: none;
+  position: absolute;
+  letter-spacing: 0.5px;
+  top: 0;
+  right: 0;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+#dictionaryButton:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #146eff;
+  transition: 0.3s;
+}
+
+#searchView {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+#dictionary-input {
+  height: 26px;
+  font-family: 'Acme', sans-serif;
+  font-size: 20px;
+  padding-left: 15px;
+  border-radius: 10px;
+  outline: none;
+  width: 60%;
+  margin-right: 10px;
+}
+
+#dictionary-search-button {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Acme', sans-serif;
+  color: white;
+  background-color: #ff6a00;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+#originalSmartSearchButtonView:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #ff6a00;
+  transition: 0.3s;
+}
+
