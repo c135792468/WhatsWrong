@@ -114,7 +114,7 @@ class Search extends Component {
 	}
 
 	handleMinimizeSmartSearch() {
-		if(this.state.data.SID.length > 0) {
+		if(this.state.data.diagnosesNames.length > 0) {
 			this.setState({
 				title: true,
 				titleView: "minimizedTitleView",
@@ -264,15 +264,12 @@ class Search extends Component {
 								this.handleDiagnosesHints(diagnosisHints[i]);
 							}
 						}
-					})
 
+						this.handleMinimizeSmartSearch();
+					})
 					.catch((error) => {
 						console.log(error);
 					});
-
-					console.log(this.state.data);
-
-					this.handleMinimizeSmartSearch();
 			})
 
 			.catch((error) => {
