@@ -9,6 +9,8 @@ class Dictionary extends Component {
 
 		this.state = {
 			searchKey: '',
+			phrases: [],
+			defs: [],
 		};
 	}
 
@@ -20,6 +22,20 @@ class Dictionary extends Component {
 		})
 	}
 
+	handlePhrases(event) {
+		this.setState({
+			...this.state,
+			phrases: [...this.state.phrases, event]
+		})
+	}
+
+	handleDefs(event) {
+		this.setState({
+			...this.state,
+			defs: [...this.state.defs, event]
+		})
+	}
+
 	handleSearch(event) {
 		event.preventDefault();
 
@@ -27,12 +43,23 @@ class Dictionary extends Component {
 			searchKey: '',
 		})
 
+		var listOfPhrases = [];
+		var listOfDefs = [];
+
 		var term = {'dict': this.state.searchKey};
 			  
 		var request = require('axios');
 		axios.post('http://18.191.248.57:80/dct', term)
 			.then((response) => {
-				console.log(response);
+				var obj = JSON.stringify(response);
+				var x = JSON.parse(obj);
+
+				for(var i = 0; i < x.data.length; i++) {
+					listOfPhrases.push(x.data[i].phrase);
+					listOfDefs.push(x.data[i].def);
+					this.handlePhrases(listOfPhrases[i]);
+					this.handleDefs(listOfDefs[i]);
+				}
 			})
 
 			.catch((error) => {
@@ -49,9 +76,16 @@ class Dictionary extends Component {
 				        <div className="modal-content">
 				            <div className="modal-body">
 				            	<div id="searchView">
-				                <input className="text" id="dictionary-input" type="text" placeholder="Search the Medical Dictionary" onChange={this.handleSearchKey.bind(this)} value={this.state.searchKey}/>
-				                <input id="dictionary-search-button" type="submit" value="SEARCH" onClick={this.handleSearch.bind(this)} />
+				                	<input className="text" id="dictionary-input" type="text" placeholder="Search the Medical Dictionary" onChange={this.handleSearchKey.bind(this)} value={this.state.searchKey}/>
+				                	<input id="dictionary-search-button" type="submit" value="SEARCH" onClick={this.handleSearch.bind(this)} />
 				                </div>
+				                <div id="definition-list">
+									<ul>
+										{this.state.phrases.map((item,index) => 
+											<li class="symptom"><strong>{item}</strong>: {this.state.defs[index]}</li>
+										)}
+									</ul>
+								</div>
 				                <button type="submit" data-dismiss="modal" id="closeButton">Close</button>
 				            </div>
 				        </div>

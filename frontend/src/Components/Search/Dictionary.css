@@ -55,10 +55,7 @@
   letter-spacing: 0.5px;
 }
 
-#originalSmartSearchButtonView:hover {
-  cursor: pointer;
-  background-color: white;
-  color: #ff6a00;
-  transition: 0.3s;
+#definition-list ul {
+  padding: 0px 20px;
 }
 

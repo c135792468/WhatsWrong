@@ -213,16 +213,9 @@ class Search extends Component {
 				var obj = JSON.stringify(response);
 				var x = JSON.parse(obj);
 				
-				if (x.data.length > 10) {
-					for(var i = 0; i < 10; i++) {
-						symptomSID.push(x.data[i].SID);
-						this.handleSID(symptomSID[i]);
-					}
-				} else {
-					for(var i = 0; i < x.data.length; i++) {
-						symptomSID.push(x.data[i].SID);
-						this.handleSID(symptomSID[i]);
-					}
+				for(var i = 0; i < x.data.length; i++) {
+					symptomSID.push(x.data[i].SID);
+					this.handleSID(symptomSID[i]);
 				}
 
 				var jsonList = [];
