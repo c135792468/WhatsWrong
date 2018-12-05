@@ -31,6 +31,15 @@ class Modal extends Component {
 					                <li>See the possible diagnosis along with advice.</li>
 					                <img src="simp-search3.png" />
 				                </ol>
+				                <h4>For Medical Dictionary:</h4>
+				                <ol>
+						            <li>Click on icon on top left corner labeled "Medical Dictionary".</li>
+					                <img src="dict-1.png" />
+					                <li>Enter medical term in search bar.</li>
+					                <img src="dict-2.png" />
+					                <li>Read the given definitions.</li>
+					                <img src="dict-3.png" />
+				                </ol>
 				                <button type="submit" data-dismiss="modal" id="closeButton">Close</button>
 				            </div>
 				        </div>
