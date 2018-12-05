@@ -76,6 +76,10 @@
 	line-height: 1.5;
 }
 
+.emptyDropdown {
+	display: none;
+}
+
 .dropdown {
 	position: relative;
 	width: 88%;

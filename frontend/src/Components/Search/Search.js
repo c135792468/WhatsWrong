@@ -22,6 +22,7 @@ class Search extends Component {
 			newSearchView: "emptyNewSearch",
 			symptomsView: "emptySymptoms",
 			diagnosisView: "emptyDiagnosis",
+			dropdownView: "emptyDropdown",
 			data: {
 				searchKey: '',
 				gender: '',
@@ -258,6 +259,7 @@ class Search extends Component {
 							}
 						}
 
+						this.handleDropdown();
 						this.handleMinimizeSmartSearch();
 					})
 					.catch((error) => {
@@ -283,13 +285,13 @@ class Search extends Component {
 			newSearchView: "emptyNewSearch",
 			symptomsView: "emptySymptoms",
 			diagnosisView: "emptyDiagnosis",
+			dropdownView: "emptyDropdown",
 			data: {
 				searchKey: '',
 				gender: '',
 				age: '',
-				search: '',
 				symptoms: [],
-				SID: '',
+				SID: [],
 				diagnosesNames: [],
 				diagnosesProbabilities: [],
 				diagnosesHints: [],
@@ -322,6 +324,20 @@ class Search extends Component {
 				diagnosesHints: [...this.state.data.diagnosesHints, event]
 			}	
 		})
+	}
+
+	handleDropdown() {
+		if (this.state.data.diagnosesNames.length > 1) {
+			this.setState({
+				...this.state,
+				dropdownView: "dropdown",
+			})
+		} else {
+			this.setState({
+				...this.state,
+				dropdownView: "emptyDropdown",
+			})
+		}
 	}
 
 	handleMinimizeSymptoms() {
@@ -411,6 +427,7 @@ class Search extends Component {
 					}
 				}
 
+				this.handleDropdown();
 				this.handleMinimizeSymptoms();
 			})
 
@@ -462,7 +479,7 @@ class Search extends Component {
 								<p class="diagnosis-item">{this.state.data.diagnosesHints[0]}</p>
 							</ul>
 						</div>
-						<div class="dropdown">
+						<div class={this.state.dropdownView}>
 							<input id="see-more" type="checkbox" name="tab" />
 							<label for="see-more">Click here for other possible diagnosis</label>
 							<div class="more-diagnosis">
