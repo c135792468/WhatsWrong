@@ -41,6 +41,8 @@ class Dictionary extends Component {
 
 		this.setState({
 			searchKey: '',
+			phrases: [],
+			defs: [],
 		})
 
 		var listOfPhrases = [];

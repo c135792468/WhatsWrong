@@ -26,7 +26,6 @@ class Search extends Component {
 				searchKey: '',
 				gender: '',
 				age: '',
-				search: '',
 				symptoms: [],
 				SID: [],
 				diagnosesNames: [],
