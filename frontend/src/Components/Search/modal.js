@@ -29,7 +29,7 @@ class Modal extends Component {
 						            <li>Enter your symptoms however way you like. Select your gender and enter age.</li>
 					                <img src="smart-search1.png" />
 					                <li>See the possible diagnosis along with advice.</li>
-					                <img src="simp-search3.png" />
+					                <img src="smart-search2.png" />
 				                </ol>
 				                <h4>For Medical Dictionary:</h4>
 				                <ol>
