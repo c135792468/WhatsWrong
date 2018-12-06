@@ -176,23 +176,26 @@ class Search extends Component {
 					var obj = JSON.stringify(response);
 					var x = JSON.parse(obj);
 					
-					if (x.data.length > 10) {
-						for(var i = 0; i < 10; i++) {
-							symptomNames.push(x.data[i].common_name);
-							symptomSID.push(x.data[i].SID);
-							this.handleSymptoms(symptomNames[i]);
-							this.handleSID(symptomSID[i]);
+					if(x.data[0].SID !== "no_results"){
+						if (x.data.length > 10) {
+							for(var i = 0; i < 10; i++) {
+								symptomNames.push(x.data[i].common_name);
+								symptomSID.push(x.data[i].SID);
+								this.handleSymptoms(symptomNames[i]);
+								this.handleSID(symptomSID[i]);
+							}
+						} else {
+							for(var i = 0; i < x.data.length; i++) {
+								symptomNames.push(x.data[i].common_name);
+								symptomSID.push(x.data[i].SID);
+								this.handleSymptoms(symptomNames[i]);
+								this.handleSID(symptomSID[i]);
+							}
 						}
+						this.handleMinimizeSearch();
 					} else {
-						for(var i = 0; i < x.data.length; i++) {
-							symptomNames.push(x.data[i].common_name);
-							symptomSID.push(x.data[i].SID);
-							this.handleSymptoms(symptomNames[i]);
-							this.handleSID(symptomSID[i]);
-						}
+						alert("No results were found with your input. Perhaps try Smart Search.");
 					}
-
-					this.handleMinimizeSearch();
 				})
 
 				.catch((error) => {
@@ -225,59 +228,65 @@ class Search extends Component {
 				.then((response) => {
 					var obj = JSON.stringify(response);
 					var x = JSON.parse(obj);
+
+					console.log(x);
 					
-					for(var i = 0; i < x.data.length; i++) {
-						symptomSID.push(x.data[i].SID);
-						this.handleSID(symptomSID[i]);
-					}
+					if(x.data[0].SID !== "error"){
+						for(var i = 0; i < x.data.length; i++) {
+							symptomSID.push(x.data[i].SID);
+							this.handleSID(symptomSID[i]);
+						}
 
-					var jsonList = [];
+						var jsonList = [];
 
-					for(var i = 0; i < symptomSID.length; i++){
-						var dg = {'SID': symptomSID[i], 'gender':this.state.data.gender, 'age': this.state.data.age };
-						jsonList.push(dg);
-					}
+						for(var i = 0; i < symptomSID.length; i++){
+							var dg = {'SID': symptomSID[i], 'gender':this.state.data.gender, 'age': this.state.data.age };
+							jsonList.push(dg);
+						}
 
-					var diagnosisNames = [];
-					var diagnosisProbabilities = [];
-					var diagnosisHints = [];
+						var diagnosisNames = [];
+						var diagnosisProbabilities = [];
+						var diagnosisHints = [];
 
-					var request2 = require('axios');
-					axios.post('http://18.191.248.57:80/diagnosis', jsonList)
-						.then((response) => {
-							var obj = JSON.stringify(response);
-							var x = JSON.parse(obj);
+						var request2 = require('axios');
+						axios.post('http://18.191.248.57:80/diagnosis', jsonList)
+							.then((response) => {
+								var obj = JSON.stringify(response);
+								var x = JSON.parse(obj);
 
-							console.log(x);
-							
-							if (x.data.length > 3) {
-								for(var i = 0; i < 3; i++) {
-									diagnosisNames.push(x.data[i].common_name);
-									var tempProbability = ((parseFloat(x.data[i].probability) * 100).toFixed(2)).toString();
-									diagnosisProbabilities.push(tempProbability);
-									diagnosisHints.push(x.data[i].hint);
-									this.handleDiagnosesNames(diagnosisNames[i]);
-									this.handleDiagnosesProbabilities(diagnosisProbabilities[i]);
-									this.handleDiagnosesHints(diagnosisHints[i]);
+								console.log(x);
+								
+								if (x.data.length > 3) {
+									for(var i = 0; i < 3; i++) {
+										diagnosisNames.push(x.data[i].common_name);
+										var tempProbability = ((parseFloat(x.data[i].probability) * 100).toFixed(2)).toString();
+										diagnosisProbabilities.push(tempProbability);
+										diagnosisHints.push(x.data[i].hint);
+										this.handleDiagnosesNames(diagnosisNames[i]);
+										this.handleDiagnosesProbabilities(diagnosisProbabilities[i]);
+										this.handleDiagnosesHints(diagnosisHints[i]);
+									}
+								} else {
+									for(var i = 0; i < x.data.length; i++) {
+										diagnosisNames.push(x.data[i].common_name);
+										var tempProbability = ((parseFloat(x.data[i].probability) * 100).toFixed(2)).toString();
+										diagnosisProbabilities.push(tempProbability);
+										diagnosisHints.push(x.data[i].hint);
+										this.handleDiagnosesNames(diagnosisNames[i]);
+										this.handleDiagnosesProbabilities(diagnosisProbabilities[i]);
+										this.handleDiagnosesHints(diagnosisHints[i]);
+									}
 								}
-							} else {
-								for(var i = 0; i < x.data.length; i++) {
-									diagnosisNames.push(x.data[i].common_name);
-									var tempProbability = ((parseFloat(x.data[i].probability) * 100).toFixed(2)).toString();
-									diagnosisProbabilities.push(tempProbability);
-									diagnosisHints.push(x.data[i].hint);
-									this.handleDiagnosesNames(diagnosisNames[i]);
-									this.handleDiagnosesProbabilities(diagnosisProbabilities[i]);
-									this.handleDiagnosesHints(diagnosisHints[i]);
-								}
-							}
 
-							this.handleDropdown();
-							this.handleMinimizeSmartSearch();
-						})
+								this.handleDropdown();
+								this.handleMinimizeSmartSearch();
+							})
 						.catch((error) => {
 							console.log(error);
 						});
+					} else {
+						alert("No results were found with your input.");
+					}
 				})
 
 				.catch((error) => {
