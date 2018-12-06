@@ -35,6 +35,7 @@ class Search extends Component {
 	}
 
 	// Saves the value of whatever the user is searching
+	// This will be used for handleSimpleSearch and handleSmartSearch
 	handleSearchKey(event) {
 		const searchKey = event.target.value;
 		this.setState({
@@ -46,6 +47,7 @@ class Search extends Component {
 	}
 
 	// Saves the gender of the user required by the API call in the Search page
+	// This will be used for handleSimpleSearch and handleSmartSearch
 	handleGender(event) {
 		const gender = event.target.value;
 		this.setState({
@@ -57,6 +59,7 @@ class Search extends Component {
 	}
 
 	// Saves the age of the user required by the API call in the Search page
+	// This will be used for handleSimpleSearch and handleSmartSearch
 	handleAge(event) {
 		const age = event.target.value;
 		this.setState({
@@ -68,6 +71,7 @@ class Search extends Component {
 	}
 
 	// This function is used to see if any of the input fields are left empty by the user
+	// This will be used for handleSimpleSearch and handleSmartSearch
 	handleEmptyInput() {
 		if (!this.state.data.searchKey || !this.state.data.gender || !this.state.data.age) {
 			return true
@@ -78,6 +82,7 @@ class Search extends Component {
 
 	// Pushes into array the symptom names given from the API call
 	// This is used to display the symptoms to the user
+	// This will be used for handleSimpleSearch API Call
 	handleSymptoms(event) {
 		this.setState({
 			data: {
@@ -89,6 +94,7 @@ class Search extends Component {
 
 	// Pushes into array the symptom ID numbers given from the API call
 	// SID is used to send back the symptoms that apply to the user to get back a diagnosis
+	// This will be used for handleSimpleSearch API Call, handleSmartSearch API Call, and handleDiagnosis API Call
 	handleSID(event) {
 		this.setState({
 			data: {
@@ -101,6 +107,7 @@ class Search extends Component {
 	// This function allows for the class names of the different views to change
 	// By doing this, we are allowing for certain fields to be minimized or to disappear with different CSS properties
 	// Since everything is in one page, we need views such as the Search View to disappear when showing Symptoms View
+	// This will be used for handleSimpleSearch
 	handleMinimizeSearch() {
 		if(this.state.data.symptoms.length > 0) {
 			this.setState({
@@ -128,6 +135,7 @@ class Search extends Component {
 	// This function allows for the class names of the different views to change
 	// By doing this, we are allowing for certain fields to be minimized or to disappear with different CSS properties
 	// Since everything is in one page, we need views such as the Search View to disappear when showing Diagnosis View
+	// This will be used for handleSmartSearch
 	handleMinimizeSmartSearch() {
 		if(this.state.data.diagnosesNames.length > 0) {
 			this.setState({
@@ -155,6 +163,7 @@ class Search extends Component {
 	}
 
 	// Function that allows for Simple Search button to work
+	// Next step for this function is handleDiagnosis
 	handleSimpleSearch(event) {
 		event.preventDefault();
 
@@ -224,9 +233,13 @@ class Search extends Component {
 		}
 	}
 
+	// Function that allows for Simple Search button to work
+	// This is essentially a combination of handleSimpleSearch and handleDiagnosis
 	handleSmartSearch(event) {
 		event.preventDefault();
 
+		// Empty values of state for SID, diagnosis names, probabilities, and hints so that we can continue to make new searches
+		// This prevents the mistake of still using the data from previous searches
 		if (!this.handleEmptyInput()){
 			this.setState({
 				data: {
@@ -238,41 +251,62 @@ class Search extends Component {
 				}	
 			})
 
+			// Create local arrays to save the Symptom IDs soon to be given from the API response
 			var symptomSID = [];
+
+			// The API call only accepts objects with property 'search', 'gender', and 'age'.
+			// These values are taken from the values that were saved using handleSearchKey, handleGender, and handleAge functions
 			var js = {'search': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
-				  
+			
+			// Axios is being used to make API Calls and we are sending the 'js' object
 			var request = require('axios');
 			axios.post('http://18.191.248.57:80/simpsearch', js)
 				.then((response) => {
+					// Using JSON.stringify and JSON.parse, we are able to take the individual values we need from the return object
 					var obj = JSON.stringify(response);
 					var x = JSON.parse(obj);
 					
+					// This if statement is used to ensure that we are getting back results
 					if(x.data[0].SID !== "error"){
+						// For each of the values in x.data, we are pushing the symptom IDs from the returned object
+						// into the local array and then 'this.state', so we can reuse the SIDs for diagnosis
 						for(var i = 0; i < x.data.length; i++) {
 							symptomSID.push(x.data[i].SID);
 							this.handleSID(symptomSID[i]);
 						}
 
+						// The API only accepts lists of objects
 						var jsonList = [];
 
+						// The API only takes array of objects that have properties 'SID', 'gender', and 'age'
+						// Using dg, we are making making the objects and then pushing dg onto jsonList	
 						for(var i = 0; i < symptomSID.length; i++){
 							var dg = {'SID': symptomSID[i], 'gender':this.state.data.gender, 'age': this.state.data.age };
 							jsonList.push(dg);
 						}
 
+						// Create local arrays to save the diagnosis names, probabilities, and hints soon to be given from the API response
 						var diagnosisNames = [];
 						var diagnosisProbabilities = [];
 						var diagnosisHints = [];
 
+						// We are using Axios again to make a second API call for diagnosis
 						var request2 = require('axios');
 						axios.post('http://18.191.248.57:80/diagnosis', jsonList)
 							.then((response) => {
+								// Using JSON.stringify and JSON.parse, we are able to take the individual values we need from the return object
 								var obj = JSON.stringify(response);
 								var x = JSON.parse(obj);
 								
+								// We are allowing no more than three total diagnoses
 								if (x.data.length > 3) {
 									for(var i = 0; i < 3; i++) {
+										// For each of the values in x.data, we are pushing the diagnosis names, 
+										// probabilities, and hints from the returned object into the local array and then 'this.state'
+										// This way, we can output the results to user in render()
 										diagnosisNames.push(x.data[i].common_name);
+										// For probability, the value is given in decimal (ex: 0.934219).
+										// We are multiplying it by 100 and taking only the first two decimal places
 										var tempProbability = ((parseFloat(x.data[i].probability) * 100).toFixed(2)).toString();
 										diagnosisProbabilities.push(tempProbability);
 										diagnosisHints.push(x.data[i].hint);
@@ -292,7 +326,9 @@ class Search extends Component {
 									}
 								}
 
+								// This is used to see if the dropdown for multiple diagnoses is necessary
 								this.handleDropdown();
+								// This is used to hide the Symptoms View and show the Diagnosis View
 								this.handleMinimizeSmartSearch();
 							})
 						.catch((error) => {
@@ -314,6 +350,7 @@ class Search extends Component {
 
 	// This button will be used to reset all of the values and to make Symptoms and Diagnosis View disappear
 	// The original Search View will again appear, so that the user can make another search
+	// This will be shown when Symptoms View or Diagnosis View is shown
 	handleNewSearch(event) {
 		this.setState ({
 			titleView: "originalTitleView",
@@ -340,6 +377,7 @@ class Search extends Component {
 
 	// Pushes into array the diagnosis names given from the API call
 	// This is used to display the diagnosis name to the user
+	// This will be used for handleSmartSearch and handleDiagnosis
 	handleDiagnosesNames(event) {
 		this.setState({
 			data: {
@@ -351,6 +389,7 @@ class Search extends Component {
 
 	// Pushes into array the diagnosis probability percentages for the corresponding diagnosis name given from the API call
 	// This is used to display the diagnosis probability percentage to the user
+	// This will be used for handleSmartSearch and handleDiagnosis
 	handleDiagnosesProbabilities(event) {
 		this.setState({
 			data: {
@@ -362,6 +401,7 @@ class Search extends Component {
 
 	// Pushes into array the advice for the corresponding diagnosis given from the API call
 	// This is used to display the advice/recommendation the API would like for the user to take
+	// This will be used for handleSmartSearch and handleDiagnosis
 	handleDiagnosesHints(event) {
 		this.setState({
 			data: {
@@ -374,6 +414,7 @@ class Search extends Component {
 	// This function is called in handleDiagnosis
 	// This will allow for the Symptoms View to disappear and the Diagnosis View to appear
 	// with all the given Diagnosis names, probabilities, and hints
+	// This will be used in handleDiagnosis
 	handleMinimizeSymptoms() {
 		if(this.state.data.diagnosesNames.length > 0) {
 			this.setState({
@@ -391,6 +432,7 @@ class Search extends Component {
 	}
 
 	// Checks to see if there is more than one diagnoses name given
+	// This will be used for handleSmartSearch and handleDiagnosis
 	handleDropdown() {
 		// If there is more than one, then we are showing the dropdown that includes 2 more diagnosis names
 		if (this.state.data.diagnosesNames.length > 1) {
@@ -408,6 +450,7 @@ class Search extends Component {
 	}
 
 	// Function that allows for Diagnosis to work for Simple Search
+	// This will be used for handleSimpleSearch
 	handleDiagnose(event) {
 		event.preventDefault();
 
@@ -458,9 +501,15 @@ class Search extends Component {
 				var obj = JSON.stringify(response);
 				var x = JSON.parse(obj);
 				
+				// We are allowing no more than three total diagnoses
 				if (x.data.length > 3) {
 					for(var i = 0; i < 3; i++) {
+						// For each of the values in x.data, we are pushing the diagnosis names, 
+						// probabilities, and hints from the returned object into the local array and then 'this.state'
+						// This way, we can output the results to user in render()
 						diagnosisNames.push(x.data[i].common_name);
+						// For probability, the value is given in decimal (ex: 0.934219).
+						// We are multiplying it by 100 and taking only the first two decimal places
 						var tempProbability = ((parseFloat(x.data[i].probability) * 100).toFixed(2)).toString();
 						diagnosisProbabilities.push(tempProbability);
 						diagnosisHints.push(x.data[i].hint);
@@ -480,7 +529,9 @@ class Search extends Component {
 					}
 				}
 
+				// This is used to see if the dropdown for multiple diagnoses is necessary
 				this.handleDropdown();
+				// This is used to hide the Symptoms View and show the Diagnosis View
 				this.handleMinimizeSymptoms();
 			})
 
