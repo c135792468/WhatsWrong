@@ -11,6 +11,7 @@ class TeamContact extends Component {
 		return (
 			// These are all static outputs to the screen using simple HTML
 			// No functions are being used
+			// Bootstrap Modal is being used to make a pop-up window
 			<div id="HowToUse">
 				<button data-toggle="modal" data-target="#myModal3" id="teamContactButton">Team/Contact</button>
 				<div id="myModal3" className="modal fade" role="dialog">

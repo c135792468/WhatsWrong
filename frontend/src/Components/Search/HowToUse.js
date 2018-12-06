@@ -11,6 +11,7 @@ class HowToUse extends Component {
 		return (
 			// These are all static outputs to the screen using simple HTML
 			// No functions are being used
+			// Bootstrap Modal is being used to make a pop-up window
 			<div id="HowToUse">
 				<button data-toggle="modal" data-target="#myModal" id="howToUseButton">How To Use</button>
 				<div id="myModal" className="modal fade" role="dialog">

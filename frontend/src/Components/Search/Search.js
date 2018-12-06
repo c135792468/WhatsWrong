@@ -543,12 +543,14 @@ class Search extends Component {
 	render(){
 		return(
 			<div className="Search">
+				{/* All of the Modals for the website */}
 				<HowToUse />
 				<Dictionary />
 				<TeamContact />
 
 				<h1 id={this.state.titleView}>WHAT'S WRONG?</h1>
 
+				{/* Original Search Page: Website opens with this initially */}
 				<input className="text" id={this.state.inputView} type="text" placeholder="Type in body part..." onChange={this.handleSearchKey.bind(this)} value={this.state.data.searchKey}/> <br/>
 				<div id={this.state.genderAgeView}>
 					<select id="gender-input" onChange={this.handleGender.bind(this)} value={this.state.data.gender}>
@@ -561,8 +563,10 @@ class Search extends Component {
 				<input id={this.state.searchButtonView} type="submit" value="SIMPLE SEARCH" onClick={this.handleSimpleSearch.bind(this)} /> 
 				<input id={this.state.smartSearchButtonView} type="submit" value="SMART SEARCH" onClick={this.handleSmartSearch.bind(this)} /> <br/>
 				
+				{/* This only appears for Symptoms View and Diagnosis View */}
 				<input id={this.state.newSearchView} type="submit" value="NEW SEARCH" onClick={this.handleNewSearch.bind(this)} /> <br/>
 
+				{/* This is the Symptoms View when using Simple Search */}
 				<div id={this.state.symptomsView}>
 					<h3 id="apply-title">Check all that apply</h3>
 					<div id="symptoms-list">
@@ -575,6 +579,7 @@ class Search extends Component {
 					<input id="submit-button" type="submit" value="Submit" onClick={this.handleDiagnose.bind(this)} /> <br/>
 				</div>
 
+				{/* This is the Diagnosis view when using Smart Search, as well as Simple Search (but after Symptoms View) */}
 				<div id={this.state.diagnosisView}>
 					<div id="diagnosis">
 						<h3 id="calculated-title">Here is what we calculated:</h3>
@@ -604,6 +609,7 @@ class Search extends Component {
 					</div>
 				</div>
 
+				{/* This was included in case the user was using a screen too small. We have added CSS for windows of different sizes, but if window unnecessarily small, we give this message */}
 				<div id="screenTooSmall">
 					<h1> Screen size is too small. Increase window size. </h1>
 				</div>
