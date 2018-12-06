@@ -39,6 +39,7 @@ class Dictionary extends Component {
 		})
 	}
 
+	// Function that allows for search of Medical Dictionary
 	handleSearch(event) {
 		event.preventDefault();
 
@@ -53,10 +54,10 @@ class Dictionary extends Component {
 		var listOfPhrases = [];
 		var listOfDefs = [];
 
-		// The API only takes objects with property 'dict'. The value for this is saved in searchKey
+		// The API only takes objects with property 'dict'. The value for this is saved using handleSearchKey function
 		var term = {'dict': this.state.searchKey};
 		
-		// Axios is being used to make API Calls
+		// Axios is being used to make API Calls and we are sending the 'term' object
 		var request = require('axios');
 		axios.post('http://18.191.248.57:80/dct', term)
 			.then((response) => {
