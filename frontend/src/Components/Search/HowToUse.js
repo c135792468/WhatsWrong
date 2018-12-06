@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './HowToUse.css';
 import './modal.css';
 
 class HowToUse extends Component {
@@ -8,8 +9,10 @@ class HowToUse extends Component {
 
 	render() {
 		return (
-			<div id="ModalInfo">
-				<button data-toggle="modal" data-target="#myModal" id="modalButton">How To Use</button>
+			// These are all static outputs to the screen using simple HTML
+			// No functions are being used
+			<div id="HowToUse">
+				<button data-toggle="modal" data-target="#myModal" id="howToUseButton">How To Use</button>
 				<div id="myModal" className="modal fade" role="dialog">
 				    <div className="modal-dialog">
 				        <div className="modal-content">

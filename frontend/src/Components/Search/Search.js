@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import HowToUse from './HowToUse.js';
 import Dictionary from './Dictionary.js';
+import TeamContact from './TeamContact.js';
 import './searchStyles.css';
 import './symptomsStyles.css';
 import './diagnosisStyles.css';
@@ -467,6 +468,7 @@ class Search extends Component {
 			<div className="Search">
 				<HowToUse />
 				<Dictionary />
+				<TeamContact />
 
 				<h1 id={this.state.titleView}>WHAT'S WRONG?</h1>
 
