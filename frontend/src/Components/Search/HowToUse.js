@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './modal.css';
 
-class Modal extends Component {
+class HowToUse extends Component {
 	constructor() {
 		super();
 	}
@@ -50,4 +50,4 @@ class Modal extends Component {
 	}
 }
 
-export default Modal;
+export default HowToUse;

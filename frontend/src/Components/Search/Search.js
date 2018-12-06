@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Modal from './Modal.js';
+import HowToUse from './HowToUse.js';
 import Dictionary from './Dictionary.js';
 import './searchStyles.css';
 import './symptomsStyles.css';
@@ -465,7 +465,7 @@ class Search extends Component {
 	render(){
 		return(
 			<div className="Search">
-				<Modal />
+				<HowToUse />
 				<Dictionary />
 
 				<h1 id={this.state.titleView}>WHAT'S WRONG?</h1>
