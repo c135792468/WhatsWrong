@@ -1,4 +1,4 @@
-/* Diagnosis Section */
+/* Diagnosis Section CSS */
 
 #emptyDiagnosis {
 	display: none;
@@ -53,8 +53,12 @@
 
 .diagnosis-item {
 	font-size: 17px;
-	margin: 10px 0;
+	margin: 5px 0;
 	line-height: 1.5;
+}
+
+.more-diagnosis .diagnosis-item {
+	font-size: 16px;
 }
 
 .emptyDropdown {
@@ -80,7 +84,7 @@
 
 .dropdown input:checked ~ .more-diagnosis {
 	max-height: 180px;
-	padding: 10px 0;
+	padding: 5px 0;
 	overflow-y: auto;
 	border: 1px solid #878787;
 }

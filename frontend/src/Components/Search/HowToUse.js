@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './HowToUse.css';
+import './HowToUseTeamContact.css';
 import './modal.css';
 
 class HowToUse extends Component {
