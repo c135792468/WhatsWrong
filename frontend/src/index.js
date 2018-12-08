@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { history } from './history';
-import Search from './components/Search/Search';
+import WhatsWrong from './components/WhatsWrong/WhatsWrong';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -14,7 +14,7 @@ ReactDOM.render(
 	<Provider>
 		<Router history={history}>
 			<React.Fragment>
-				<Route exact path={'/'} component={Search} key="Search" />
+				<Route exact path={'/'} component={WhatsWrong} key="WhatsWrong" />
 			</React.Fragment>
 		</Router>
 	</Provider>,

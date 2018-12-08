@@ -24,12 +24,12 @@
   	- index.html (Default HTML file when creating React app. In here, we changed the title of the page, added javascript script tags for Bootstrap Modal, and added our Google font)
   	- manifest.json (Default React file)
   - src (This is the folder that contains React code)
-  	- /Components
-  	  - /Search
-  	  	- Search.js
-  	  	- searchStyles.css
-  	  	- symptomStyles.css
-  	  	- diagnosisStyles.css
+  	- /Components (This folder contains React code responsible for views within the website.)
+  	  - /WhatsWrong (Folder containing React Code for Search View, Symptoms View, and Diagnosis View.)
+  	  	- WhatsWrong.js (React file that contains code for the entire website. This includes Search View, Symptoms View, and Diagnosis View. This was done to ensure efficiency in both end-user experience and coding structure.)
+  	  	- searchStyles.css (CSS file for Search View of Search.js)
+  	  	- symptomStyles.css (CSS file for Symptoms View of Search.js)
+  	  	- diagnosisStyles.css (CSS file for Diagnosis View of Search.js)
   	  - /Modals (These are the icons in the corners of the page. They pop-up a new window for the user while staying on the same page. These were implemented using BootStrap)
   	  	- Dictionary.js (React file. Allows for user to make a search in Medical Dictionary to further understand diagnosis provided by WhatsWrong)
   	  	- Dictionary.css (CSS file for Dictionary.js)

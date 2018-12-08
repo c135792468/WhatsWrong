@@ -7,7 +7,7 @@ import './searchStyles.css';
 import './symptomsStyles.css';
 import './diagnosisStyles.css';
 
-class Search extends Component {
+class WhatsWrong extends Component {
 	constructor() {
 		super();
 
@@ -618,4 +618,4 @@ class Search extends Component {
 	}
 }
 
-export default Search;
+export default WhatsWrong;
