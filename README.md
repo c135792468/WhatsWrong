@@ -43,3 +43,7 @@
   	- index.js (Default index.js file created with React app. Here, we can add more pages for the website using the Route tag)
   	- registerServiceWorker.js (Default React File)
   - README.md (Detailed step-by-step process on how to run the front-end locally)
+
+### Back-End
+
+### Android
