@@ -9,10 +9,10 @@
 
 ### Front-End
 
- /frontend
-  /public
-  	 /images (It is conventional to place images in the public folder. We used these images in src/Modals)
-  	   dict-1.png
+- /frontend (Folder contains all of the code for the frontend of the Website)
+  - /public (Commonly contains html and images)
+  	- /images (It is conventional to place images in the public folder. We used these images in src/Modals)
+  	  - dict-1.png 
   	  - dict-2.png
   	  - dict-3.png
   	  - simp-search-1.png
