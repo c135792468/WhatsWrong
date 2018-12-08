@@ -1,13 +1,13 @@
 # WhatsWrong
 
 ## Website is divided into three sections with a README.md provided for each on how to run the program locally:
-1. Frontend
-2. Backend
+1. Front-end
+2. Back-end
 3. Android
 
 ## Folder Organization
 
-### Front-End
+### Front-end
 
 - /frontend (Folder contains all of the code for the frontend of the Website)
   - /public (Commonly contains html and images)
@@ -44,6 +44,6 @@
   	- registerServiceWorker.js (Default React File)
   - README.md (Detailed step-by-step process on how to run the front-end locally)
 
-### Back-End
+### Back-end
 
 ### Android
