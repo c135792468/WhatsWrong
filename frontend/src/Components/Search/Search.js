@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import HowToUse from './HowToUse.js';
-import Dictionary from './Dictionary.js';
-import TeamContact from './TeamContact.js';
+import HowToUse from '../Modals/HowToUse.js';
+import Dictionary from '../Modals/Dictionary.js';
+import TeamContact from '../Modals/TeamContact.js';
 import './searchStyles.css';
 import './symptomsStyles.css';
 import './diagnosisStyles.css';
