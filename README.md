@@ -9,9 +9,9 @@
 
 ### Front-End
 
-- frontend
-  - public
-  	- images (It is conventional to place images in the public folder. We used these images in src/Modals)
+- /frontend
+  - /public
+  	- /images (It is conventional to place images in the public folder. We used these images in src/Modals)
   	  - dict-1.png
   	  - dict-2.png
   	  - dict-3.png
@@ -24,7 +24,7 @@
   	- index.html (Default HTML file when creating React app. In here, we changed the title of the page, added javascript script tags for Bootstrap Modal, and added our Google font.)
   	- manifest.json (Default React file)
   - src (This is the folder that contains React code)
-  	- Components
+  	- /Components
   	  - 
   	- App.test.js (Default React File. Used to make sure the page crashes with an error so that error can be analyzed and fixed.)
   	- history.js (Allows for programmer to create separate URLS. Can keep the file as is.)
