@@ -4,9 +4,9 @@
 
 1. Go to terminal and run:
 
-   `git clone https://github.com/IgorBelyayev/101-Admin-Site.git`
+   `git clone https://github.com/RakibHassan96/WhatsWrong.git`
 
-2. In terminal, go into website directory and run:
+2. In terminal, go into frontend directory and run:
 
    `yarn`
 
