@@ -43,7 +43,8 @@ class Dictionary extends Component {
 	handleSearch(event) {
 		event.preventDefault();
 
-		// Empty values of state for every search so that prior phrases and definitions do not clutter array
+		// Empty values of state for every search so that prior phrases and 
+		// definitions do not clutter array
 		this.setState({
 			searchKey: '',
 			phrases: [],
@@ -54,19 +55,23 @@ class Dictionary extends Component {
 		var listOfPhrases = [];
 		var listOfDefs = [];
 
-		// The API only takes objects with property 'dict'. The value for this is saved using handleSearchKey function
+		// The API only takes objects with property 'dict'. The value for this 
+		// is saved using handleSearchKey function
 		var term = {'dict': this.state.searchKey};
 		
 		// Axios is being used to make API Calls and we are sending the 'term' object
 		var request = require('axios');
 		axios.post('http://18.191.248.57:80/dct', term)
 			.then((response) => {
-				// Using JSON.stringify and JSON.parse, we are able to take the individual values we need from the return object
+				// Using JSON.stringify and JSON.parse, we are able to take the 
+				// individual values we need from the return object
 				var obj = JSON.stringify(response);
 				var x = JSON.parse(obj);
 
-				// For each of the values in x.data, we are pushing the phrases and definitions from the returned object
-				// into the local array and then 'this.state', so we can output the results to the user in render()
+				// For each of the values in x.data, we are pushing the phrases 
+				// and definitions from the returned object
+				// into the local array and then 'this.state', so we can output 
+				// the results to the user in render()
 				for(var i = 0; i < x.data.length; i++) {
 					listOfPhrases.push(x.data[i].phrase);
 					listOfDefs.push(x.data[i].def);
@@ -89,12 +94,16 @@ class Dictionary extends Component {
 				        <div className="modal-content">
 				            <div className="modal-body">
 				            	<div id="searchView">
-				                	<input className="text" id="dictionary-input" type="text" placeholder="Search the Medical Dictionary" onChange={this.handleSearchKey.bind(this)} value={this.state.searchKey}/>
-				                	<input id="dictionary-search-button" type="submit" value="SEARCH" onClick={this.handleSearch.bind(this)} />
+				                	<input className="text" id="dictionary-input" type="text" 
+				                	placeholder="Search the Medical Dictionary" 
+				                	onChange={this.handleSearchKey.bind(this)} value={this.state.searchKey}/>
+				                	<input id="dictionary-search-button" type="submit" value="SEARCH" 
+				                	onClick={this.handleSearch.bind(this)} />
 				                </div>
 				                <div id="definition-list">
 									<ul>
-										{/* Shows user the phrases along with it's corresponding definition using corresponding index numbers */}
+										{/* Shows user the phrases along with it's corresponding definition 
+										using corresponding index numbers */}
 										{this.state.phrases.map((item,index) => 
 											<li class="symptom"><strong>{item}</strong>: {this.state.defs[index]}</li>
 										)}

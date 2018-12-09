@@ -92,9 +92,10 @@ class WhatsWrong extends Component {
 		})
 	}
 
-	// Pushes into array the symptom ID numbers given from the API call
-	// SID is used to send back the symptoms that apply to the user to get back a diagnosis
-	// This will be used for handleSimpleSearch API Call, handleSmartSearch API Call, and handleDiagnosis API Call
+	// Pushes into array the symptom ID numbers given from the API call.
+	// SID is used to send back the symptoms that apply to the user to get back a diagnosis.
+	// This will be used for handleSimpleSearch API Call, handleSmartSearch API Call,
+	// and handleDiagnosis API Call.
 	handleSID(event) {
 		this.setState({
 			data: {
@@ -104,10 +105,12 @@ class WhatsWrong extends Component {
 		})
 	}
 
-	// This function allows for the class names of the different views to change
-	// By doing this, we are allowing for certain fields to be minimized or to disappear with different CSS properties
-	// Since everything is in one page, we need views such as the Search View to disappear when showing Symptoms View
-	// This will be used for handleSimpleSearch
+	// This function allows for the class names of the different views to change.
+	// By doing this, we are allowing for certain fields to be minimized 
+	// or to disappear with different CSS properties.
+	// Since everything is in one page, we need views such as the Search View 
+	// to disappear when showing Symptoms View.
+	// This will be used for handleSimpleSearch.
 	handleMinimizeSearch() {
 		if(this.state.data.symptoms.length > 0) {
 			this.setState({
@@ -132,9 +135,11 @@ class WhatsWrong extends Component {
 		}
 	}
 
-	// This function allows for the class names of the different views to change
-	// By doing this, we are allowing for certain fields to be minimized or to disappear with different CSS properties
-	// Since everything is in one page, we need views such as the Search View to disappear when showing Diagnosis View
+	// This function allows for the class names of the different views to change.
+	// By doing this, we are allowing for certain fields to be minimized 
+	// or to disappear with different CSS properties.
+	// Since everything is in one page, we need views such as the Search View 
+	// to disappear when showing Diagnosis View
 	// This will be used for handleSmartSearch
 	handleMinimizeSmartSearch() {
 		if(this.state.data.diagnosesNames.length > 0) {
@@ -178,19 +183,26 @@ class WhatsWrong extends Component {
 				}	
 			})
 
-			// Create local arrays to save the Symptom Names and Symptom IDs soon to be given from the API response
+			// Create local arrays to save the Symptom Names and Symptom IDs soon to be given 
+			// from the API response
 			var symptomNames = [];
 			var symptomSID = [];
 
 			// The API call only accepts objects with property 'search', 'gender', and 'age'.
-			// These values are taken from the values that were saved using handleSearchKey, handleGender, and handleAge functions
-			var js = {'search': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
+			// These values are taken from the values that were saved using handleSearchKey,
+			// handleGender, and handleAge functions
+			var js = {
+				'search': this.state.data.searchKey, 
+				'gender':this.state.data.gender, 
+				'age': this.state.data.age 
+			};
 			
 			// Axios is being used to make API Calls and we are sending the 'js' object
 			var request = require('axios');
 			axios.post('http://18.191.248.57:80/search', js)
 				.then((response) => {
-					// Using JSON.stringify and JSON.parse, we are able to take the individual values we need from the return object
+					// Using JSON.stringify and JSON.parse, we are able to take the 
+					// individual values we need from the return object
 					var obj = JSON.stringify(response);
 					var x = JSON.parse(obj);
 					
@@ -199,8 +211,9 @@ class WhatsWrong extends Component {
 						// We are limiting the number of symptoms being saved to 10 to not overwhelm the user
 						if (x.data.length > 10) {
 							for(var i = 0; i < 10; i++) {
-								// For each of the values in x.data, we are pushing the symptom names and symptom IDs from the returned object
-								// into the local array and then 'this.state', so we can output the results to the user in render()
+								// For each of the values in x.data, we are pushing the symptom names 
+								// and symptom IDs from the returned object into the local array and then
+								// 'this.state', so we can output the results to the user in render()
 								symptomNames.push(x.data[i].common_name);
 								symptomSID.push(x.data[i].SID);
 								this.handleSymptoms(symptomNames[i]);
@@ -215,7 +228,8 @@ class WhatsWrong extends Component {
 							}
 						}
 
-						// This function is used so that we can minimize the Search View and show the Symptoms View to the user
+						// This function is used so that we can minimize the Search View
+						// and show the Symptoms View to the user
 						// The Symptoms View is what will have the symptom names shown to the user
 						this.handleMinimizeSearch();
 					} else {
@@ -238,7 +252,8 @@ class WhatsWrong extends Component {
 	handleSmartSearch(event) {
 		event.preventDefault();
 
-		// Empty values of state for SID, diagnosis names, probabilities, and hints so that we can continue to make new searches
+		// Empty values of state for SID, diagnosis names, probabilities, and hints
+		// so that we can continue to make new searches.
 		// This prevents the mistake of still using the data from previous searches
 		if (!this.handleEmptyInput()){
 			this.setState({
@@ -255,20 +270,27 @@ class WhatsWrong extends Component {
 			var symptomSID = [];
 
 			// The API call only accepts objects with property 'search', 'gender', and 'age'.
-			// These values are taken from the values that were saved using handleSearchKey, handleGender, and handleAge functions
-			var js = {'search': this.state.data.searchKey, 'gender':this.state.data.gender, 'age': this.state.data.age };
+			// These values are taken from the values that were saved using handleSearchKey, 
+			// handleGender, and handleAge functions
+			var js = {
+				'search': this.state.data.searchKey, 
+				'gender':this.state.data.gender, 
+				'age': this.state.data.age 
+			};
 			
 			// Axios is being used to make API Calls and we are sending the 'js' object
 			var request = require('axios');
 			axios.post('http://18.191.248.57:80/simpsearch', js)
 				.then((response) => {
-					// Using JSON.stringify and JSON.parse, we are able to take the individual values we need from the return object
+					// Using JSON.stringify and JSON.parse, we are able to take the 
+					// individual values we need from the return object
 					var obj = JSON.stringify(response);
 					var x = JSON.parse(obj);
 					
 					// This if statement is used to ensure that we are getting back results
 					if(x.data[0].SID !== "error"){
-						// For each of the values in x.data, we are pushing the symptom IDs from the returned object
+						// For each of the values in x.data, we are pushing the symptom IDs 
+						// from the returned object.
 						// into the local array and then 'this.state', so we can reuse the SIDs for diagnosis
 						for(var i = 0; i < x.data.length; i++) {
 							symptomSID.push(x.data[i].SID);
@@ -281,11 +303,16 @@ class WhatsWrong extends Component {
 						// The API only takes array of objects that have properties 'SID', 'gender', and 'age'
 						// Using dg, we are making making the objects and then pushing dg onto jsonList	
 						for(var i = 0; i < symptomSID.length; i++){
-							var dg = {'SID': symptomSID[i], 'gender':this.state.data.gender, 'age': this.state.data.age };
+							var dg = {
+								'SID': symptomSID[i], 
+								'gender':this.state.data.gender, 
+								'age': this.state.data.age 
+							};
 							jsonList.push(dg);
 						}
 
-						// Create local arrays to save the diagnosis names, probabilities, and hints soon to be given from the API response
+						// Create local arrays to save the diagnosis names, probabilities, and hints
+						// soon to be given from the API response
 						var diagnosisNames = [];
 						var diagnosisProbabilities = [];
 						var diagnosisHints = [];
@@ -294,7 +321,8 @@ class WhatsWrong extends Component {
 						var request2 = require('axios');
 						axios.post('http://18.191.248.57:80/diagnosis', jsonList)
 							.then((response) => {
-								// Using JSON.stringify and JSON.parse, we are able to take the individual values we need from the return object
+								// Using JSON.stringify and JSON.parse, we are able to take the 
+								// individual values we need from the return object
 								var obj = JSON.stringify(response);
 								var x = JSON.parse(obj);
 								
@@ -302,7 +330,8 @@ class WhatsWrong extends Component {
 								if (x.data.length > 3) {
 									for(var i = 0; i < 3; i++) {
 										// For each of the values in x.data, we are pushing the diagnosis names, 
-										// probabilities, and hints from the returned object into the local array and then 'this.state'
+										// probabilities, and hints from the returned object into the local array
+										// and then 'this.state'.
 										// This way, we can output the results to user in render()
 										diagnosisNames.push(x.data[i].common_name);
 										// For probability, the value is given in decimal (ex: 0.934219).
@@ -387,7 +416,8 @@ class WhatsWrong extends Component {
 		})
 	}
 
-	// Pushes into array the diagnosis probability percentages for the corresponding diagnosis name given from the API call
+	// Pushes into array the diagnosis probability percentages for the corresponding 
+	// diagnosis name given from the API call
 	// This is used to display the diagnosis probability percentage to the user
 	// This will be used for handleSmartSearch and handleDiagnosis
 	handleDiagnosesProbabilities(event) {
@@ -434,7 +464,8 @@ class WhatsWrong extends Component {
 	// Checks to see if there is more than one diagnoses name given
 	// This will be used for handleSmartSearch and handleDiagnosis
 	handleDropdown() {
-		// If there is more than one, then we are showing the dropdown that includes 2 more diagnosis names
+		// If there is more than one, then we are showing the dropdown that 
+		// includes 2 more diagnosis names
 		if (this.state.data.diagnosesNames.length > 1) {
 			this.setState({
 				...this.state,
@@ -454,7 +485,8 @@ class WhatsWrong extends Component {
 	handleDiagnose(event) {
 		event.preventDefault();
 
-		// Empty values of state for diagnosis names, probabilities, and hints so that we can continue to receive new diagnoses
+		// Empty values of state for diagnosis names, probabilities, and hints
+		// so that we can continue to receive new diagnoses
 		// This prevents the mistake of still using the data from previous submissions
 		this.setState({
 			data: {
@@ -484,11 +516,16 @@ class WhatsWrong extends Component {
 		// The API only takes array of objects that have properties 'SID', 'gender', and 'age'
 		// Using dg, we are making making the objects and then pushing dg onto jsonList	
 		for(var i = 0; i < checkedSymptom.length; i++){
-			var dg = {'SID': checkedSymptom[i], 'gender':this.state.data.gender, 'age': this.state.data.age };
+			var dg = {
+				'SID': checkedSymptom[i], 
+				'gender':this.state.data.gender, 
+				'age': this.state.data.age 
+			};
 			jsonList.push(dg);
 		}
 		
-		// Create local arrays to save the diagnosis names, probabilities, and hints soon to be given from the API response
+		// Create local arrays to save the diagnosis names, probabilities, and hints
+		// soon to be given from the API response
 		var diagnosisNames = [];
 		var diagnosisProbabilities = [];
 		var diagnosisHints = [];
@@ -497,7 +534,8 @@ class WhatsWrong extends Component {
 		var request = require('axios');
 		axios.post('http://18.191.248.57:80/diagnosis', jsonList)
 			.then((response) => {
-				// Using JSON.stringify and JSON.parse, we are able to take the individual values we need from the return object
+				// Using JSON.stringify and JSON.parse, we are able to take the 
+				// individual values we need from the return object
 				var obj = JSON.stringify(response);
 				var x = JSON.parse(obj);
 				
@@ -505,7 +543,8 @@ class WhatsWrong extends Component {
 				if (x.data.length > 3) {
 					for(var i = 0; i < 3; i++) {
 						// For each of the values in x.data, we are pushing the diagnosis names, 
-						// probabilities, and hints from the returned object into the local array and then 'this.state'
+						// probabilities, and hints from the returned object into the local array
+						// and then 'this.state'
 						// This way, we can output the results to user in render()
 						diagnosisNames.push(x.data[i].common_name);
 						// For probability, the value is given in decimal (ex: 0.934219).
@@ -551,20 +590,25 @@ class WhatsWrong extends Component {
 				<h1 id={this.state.titleView}>WHAT'S WRONG?</h1>
 
 				{/* Original Search Page: Website opens with this initially */}
-				<input className="text" id={this.state.inputView} type="text" placeholder="Type in body part..." onChange={this.handleSearchKey.bind(this)} value={this.state.data.searchKey}/> <br/>
+				<input className="text" id={this.state.inputView} type="text" placeholder="Type in body part..." 
+				onChange={this.handleSearchKey.bind(this)} value={this.state.data.searchKey}/> <br/>
 				<div id={this.state.genderAgeView}>
 					<select id="gender-input" onChange={this.handleGender.bind(this)} value={this.state.data.gender}>
 					  	<option value="" selected disabled hidden id="defaultValue">Gender</option>
 					  	<option value="Male">Male</option>
 	  					<option value="Female">Female</option>
 					</select><br/>
-					<input className="text" id="age-input" type="text" placeholder="Age" onChange={this.handleAge.bind(this)} value={this.state.data.age} />
+					<input className="text" id="age-input" type="text" placeholder="Age" 
+					onChange={this.handleAge.bind(this)} value={this.state.data.age} />
 				</div>
-				<input id={this.state.searchButtonView} type="submit" value="SIMPLE SEARCH" onClick={this.handleSimpleSearch.bind(this)} /> 
-				<input id={this.state.smartSearchButtonView} type="submit" value="SMART SEARCH" onClick={this.handleSmartSearch.bind(this)} /> <br/>
+				<input id={this.state.searchButtonView} type="submit" value="SIMPLE SEARCH" 
+				onClick={this.handleSimpleSearch.bind(this)} /> 
+				<input id={this.state.smartSearchButtonView} type="submit" value="SMART SEARCH" 
+				onClick={this.handleSmartSearch.bind(this)} /> <br/>
 				
 				{/* This only appears for Symptoms View and Diagnosis View */}
-				<input id={this.state.newSearchView} type="submit" value="NEW SEARCH" onClick={this.handleNewSearch.bind(this)} /> <br/>
+				<input id={this.state.newSearchView} type="submit" value="NEW SEARCH" 
+				onClick={this.handleNewSearch.bind(this)} /> <br/>
 
 				{/* This is the Symptoms View when using Simple Search */}
 				<div id={this.state.symptomsView}>
@@ -585,7 +629,8 @@ class WhatsWrong extends Component {
 						<h3 id="calculated-title">Here is what we calculated:</h3>
 						<div id="diagnosis-list">
 							<ul id="main-diagnosis">
-								<p class="diagnosis-item">There is a {this.state.data.diagnosesProbabilities[0]}% chance that you have a <strong>{this.state.data.diagnosesNames[0]}</strong></p>
+								<p class="diagnosis-item">There is a {this.state.data.diagnosesProbabilities[0]}% chance that you have a 
+								<strong> {this.state.data.diagnosesNames[0]}</strong></p>
 								<p class="diagnosis-item">{this.state.data.diagnosesHints[0]}</p>
 							</ul>
 						</div>
@@ -594,22 +639,27 @@ class WhatsWrong extends Component {
 							<label for="see-more">Click here for other possible diagnosis</label>
 							<div class="more-diagnosis">
 								<ul class="more-diagnosis-list">
-									<p class="diagnosis-item">There is a {this.state.data.diagnosesProbabilities[1]}% chance that you have a <strong>{this.state.data.diagnosesNames[1]}</strong></p>
+									<p class="diagnosis-item">There is a {this.state.data.diagnosesProbabilities[1]}% chance that you have a 
+									<strong> {this.state.data.diagnosesNames[1]}</strong></p>
 									<p class="diagnosis-item">{this.state.data.diagnosesHints[1]}</p>
 									<hr />
-									<p class="diagnosis-item">There is a {this.state.data.diagnosesProbabilities[2]}% chance that you have a <strong>{this.state.data.diagnosesNames[2]}</strong></p>
+									<p class="diagnosis-item">There is a {this.state.data.diagnosesProbabilities[2]}% chance that you have a 
+									<strong> {this.state.data.diagnosesNames[2]}</strong></p>
 									<p class="diagnosis-item">{this.state.data.diagnosesHints[2]}</p>
 								</ul>
 							</div>
 						</div>
 						<div class="disclaimer">
 							<h4 class="title">DISCLAIMER</h4>
-							<h4>WE ARE NOT DOCTORS. WE ARE SIMPLY GIVING YOU A CALCULATED DIAGNOSIS USING ALGORITHMS. IF POSSIBLE, PLEASE VISIT YOUR PERSONAL DOCTOR. IF PAIN IS UNBEARABLE, PLEASE GO TO THE EMERGENCY ROOM OR CALL 911.</h4>
+							<h4>WE ARE NOT DOCTORS. WE ARE SIMPLY GIVING YOU A CALCULATED DIAGNOSIS USING ALGORITHMS. 
+							IF POSSIBLE, PLEASE VISIT YOUR PERSONAL DOCTOR. IF PAIN IS UNBEARABLE, 
+							PLEASE GO TO THE EMERGENCY ROOM OR CALL 911.</h4>
 						</div>
 					</div>
 				</div>
 
-				{/* This was included in case the user was using a screen too small. We have added CSS for windows of different sizes, but if window unnecessarily small, we give this message */}
+				{/* This was included in case the user was using a screen too small. 
+				We have added CSS for windows of different sizes, but if window unnecessarily small, we give this message */}
 				<div id="screenTooSmall">
 					<h1> Screen size is too small. Increase window size. </h1>
 				</div>
