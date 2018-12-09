@@ -1,4 +1,4 @@
-CREATE TABLE `sys`.`symptom_data` (
+CREATE TABLE `infermedica`.`symptom_data` (
   `SID` VARCHAR(45) NOT NULL,
   `symptom_name` LONGTEXT NOT NULL,
   `common_name` LONGTEXT NOT NULL,

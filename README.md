@@ -23,7 +23,7 @@
   	- favicon.ico (This is the icon used for the title of the page)
   	- index.html (Default HTML file when creating React app. In here, we changed the title of the page, added javascript script tags for Bootstrap Modal, and added our Google font)
   	- manifest.json (Default React file)
-  - src (This is the folder that contains React code)
+  - /src (This is the folder that contains React code)
   	- /Components (This folder contains React code responsible for views within the website.)
   	  - /WhatsWrong (Folder containing React Code for Search View, Symptoms View, and Diagnosis View.)
   	  	- WhatsWrong.js (React file that contains code for the entire website. This includes Search View, Symptoms View, and Diagnosis View. This was done to ensure efficiency in both end-user experience and coding structure.)
