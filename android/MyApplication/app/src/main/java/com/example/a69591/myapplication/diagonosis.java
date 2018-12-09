@@ -160,7 +160,7 @@ public class diagonosis extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
-                        diagonosis.add("common_name: " + name + ". With probability: " + probability + ". dif: " + def);
+                        diagonosis.add("common_name: " + name + ". With probability: " + probability + ". definition: " + def);
                         ArrayAdapter aa = new ArrayAdapter<String>(diagonosis.this, android.R.layout.simple_list_item_1, android.R.id.text1, diagonosis);
                         listView.setAdapter(aa);
                     }
