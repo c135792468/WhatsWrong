@@ -49,11 +49,11 @@
 ### Android
 -/MyApplication/app/src/main/java/com/example/a69591/myapplication
 
-  -MainActivity.java(contain code that calls the backend get back the symptoms)
+    -MainActivity.java(contain code that calls the backend get back the symptoms)
  
-  -symptomsActivity.java(contain code that shows a list of symptoms and store the selected symptoms)
+    -symptomsActivity.java(contain code that shows a list of symptoms and store the selected symptoms)
  
-  -diagonosis.java(contain code that calls the backend for both the diagonsis and the dictionary)
+    -diagonosis.java(contain code that calls the backend for both the diagonsis and the dictionary)
  
 -/MyApplication/app/src/main/res
 
