@@ -18,24 +18,25 @@ public class symptomsActivity extends Activity {
     Button submit;
     int age;
     String gender;
+    ListView chl;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_symptoms);
-        //create an ArrayList object to store selected items
-        selected=new ArrayList<String>();
-
-    }
-
-
-    public void onStart(){
-        super.onStart();
         //create an instance of ListView
-        ListView chl=(ListView) findViewById(R.id.checkable_list);
-
+        chl = (ListView) findViewById(R.id.checkable_list);
         //set multiple selection mode
         chl.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        ArrayList<String> items = new ArrayList<String>();
-        // getting data from searchActivity
+        getdata();
+        selectSymptoms();
+        ArrayAdapter<String> aa=new ArrayAdapter<String>(this,R.layout.checkable_list_layout,R.id.txt_title,name);
+        chl.setAdapter(aa);
+        Submit();
+    }
+
+    /* getting data from MainActivity
+       post: store data into list
+     */
+    public void getdata() {
         if (getIntent().hasExtra("get_name")) {
             name = (ArrayList<String>) getIntent().getSerializableExtra("get_name");
         }
@@ -48,16 +49,22 @@ public class symptomsActivity extends Activity {
         if (getIntent().hasExtra("get_gender")) {
             gender = (String) getIntent().getSerializableExtra("get_gender");
         }
-        //supply sysptoms to ListView
-        ArrayAdapter<String> aa=new ArrayAdapter<String>(this,R.layout.checkable_list_layout,R.id.txt_title,name);
-        chl.setAdapter(aa);
+    }
+
+    /*insert selected symptoms into a arraylist
+      pre: User click on a symptom
+      post: store symptom into a list. If symptom already in the list remove symptom
+     */
+    public void selectSymptoms() {
+        //create an ArrayList object to store selected items
+        selected=new ArrayList<String>();
         //set OnItemClickListener
-        chl.setOnItemClickListener(new OnItemClickListener(){
+        chl.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // selected item position
                 int index = position;
                 // add or remove selected symptoms id to selected list
-                if(selected.contains(sid.get(index)))
+                if (selected.contains(sid.get(index)))
                     selected.remove(sid.get(index)); //remove deselected item from the list of selected items
                 else
                     selected.add(sid.get(index)); //add selected item to the list of selected items
@@ -65,6 +72,12 @@ public class symptomsActivity extends Activity {
             }
 
         });
+    }
+    /* onclick submit button.
+       pre: First check if any symptoms is selected
+       post: if so pass the list to diagonosisActivity else ask user to select symptoms
+      */
+    public void Submit(){
         // create instance of button
         submit = (Button) findViewById(R.id.submits);
         // on click button
@@ -87,15 +100,5 @@ public class symptomsActivity extends Activity {
 
     }
 
-    public void showSelectedItems(View view){
-        String selItems="";
-        for(String item:selected){
-            if(selItems=="")
-                selItems=item;
-            else
-                selItems+="/"+item;
-        }
-        Toast.makeText(this, selItems, Toast.LENGTH_LONG).show();
-    }
 
 }

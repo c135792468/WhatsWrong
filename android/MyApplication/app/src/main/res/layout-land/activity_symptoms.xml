@@ -10,7 +10,7 @@
     <ListView
         android:id="@+id/checkable_list"
         android:layout_width="fill_parent"
-        android:layout_height="405dp"></ListView>
+        android:layout_height="204dp"></ListView>
 
 
     <Button

@@ -1,107 +1,317 @@
-package com.example.a69591.myapplication;
-import java.util.ArrayList;
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ListView;
-import android.view.View;
+/*package com.example.a69591.myapplication;
 
-public class MainActivity extends Activity {
-    ArrayList<String> name;
-    ArrayList<String> sid;
-    ArrayList<String> selected;
-    Button submit;
-    int age;
-    String gender;
+import android.os.Parcelable;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Button;
+import android.view.View;
+import android.content.Intent;
+import android.widget.EditText;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class searchActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search);
+
+        final RequestQueue queue = Volley.newRequestQueue(this);
+        // declare Button
+        Button search = (Button)findViewById(R.id.search);
+        // after click Button
+        search.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View v) {
+                                          // declare text body, gender, age
+                                          EditText body = (EditText) findViewById(R.id.bodypart);
+                                          EditText gender = (EditText) findViewById(R.id.gender);
+                                          EditText age = (EditText) findViewById(R.id.age);
+                                          // change text to string and int
+                                          int ag = Integer.parseInt(age.getText().toString());
+                                          String body_part = body.getText().toString();
+                                          String gen = gender.getText().toString();
+                                          //Instantiate the RequestQueue.
+                                          String url = "http://18.191.248.57:80/search";
+
+// Request a string response from the provided URL.
+                                          final JSONObject json = new JSONObject();
+                                          try {
+                                              json.put("search", body_part);
+                                              json.put("gender", gen);
+                                              json.put("age", ag);
+
+                                          } catch (JSONException e) {
+                                              e.printStackTrace();
+                                          }
+
+                                          JSONArray ja = new JSONArray();
+                                          ja.put(json);
+                                         // String a = json.toString();
+                                          //  mTextView.setText(ja.toString());
+
+                                          JsonArrayRequest JsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, ja,
+                                                  new Response.Listener<JSONArray>() {
+                                                      @Override
+                                                      public void onResponse(JSONArray response) {
+                                                          ArrayList<String> items = new ArrayList<String>();
+                                                          // mTextView.setText(response.toString());
+
+                                                          try {
+                                                              for (int i = 0; i < response.length(); i++) {
+                                                                  JSONObject jsonObject = response.getJSONObject(i);
+
+                                                                  String SID = jsonObject.getString("SID");
+                                                                  //have to check for errors or no results otherwise the program will crash
+                                                                  boolean correct_noresults = "no_results".equals(SID);
+                                                                  boolean py_error = "error_python_error".equals(SID);
+                                                                  if (correct_noresults || py_error) {
+                                                                      Log.i("err", SID);
+                                                                  } else {
+                                                                      String common_name = jsonObject.getString("common_name");
+                                                                      items.add(common_name);
+                                                                  }
+                                                              }
+                                                          } catch (JSONException e) {
+                                                              e.printStackTrace();
+                                                          }
+                                                          Intent startIntent = new Intent(searchActivity.this, symptomsActivity.class);
+
+                                                          // carry the value to symptoms screen using (key, value) pair
+                                                          startIntent.putExtra("get", items);
+                                                          startActivity(startIntent);
+
+
+                                                      }
+                                                  }, new Response.ErrorListener() {
+                                              @Override
+                                              public void onErrorResponse(VolleyError error) {
+                                                  Log.i("err", "error");
+                                              }
+                                          });
+                                          queue.add(JsonArrayRequest);
+                                      }
+                                  });
+    }
+}
+*/
+package com.example.a69591.myapplication;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.widget.Button;
+import android.view.View;
+import android.content.Intent;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity{
+    RadioGroup radioGroup;
+    RadioButton radioButton;
+    EditText body;
+    EditText age;
+    boolean page;
+    Button search, search2;
+    RequestQueue queue;
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //create an ArrayList object to store selected items
-        selected=new ArrayList<String>();
+        //create instance of body, age, and search
+        body = (EditText) findViewById(R.id.bodypart);
+        age = (EditText) findViewById(R.id.age);
+        search = (Button) findViewById(R.id.search);
+        search2 = (Button) findViewById(R.id.search2);
+        // input validation
+        body.addTextChangedListener(input);
+        age.addTextChangedListener(input);
 
+        queue = Volley.newRequestQueue(this);
+        Search();
     }
 
 
-    public void onStart(){
-        super.onStart();
-        //create an instance of ListView
-        ListView chl=(ListView) findViewById(R.id.checkable_list);
-
-        //set multiple selection mode
-        chl.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        ArrayList<String> items = new ArrayList<String>();
-        // getting data from searchActivity
-        if (getIntent().hasExtra("get_name")) {
-            name = (ArrayList<String>) getIntent().getSerializableExtra("get_name");
-        }
-        if (getIntent().hasExtra("get_id")) {
-            sid = (ArrayList<String>) getIntent().getSerializableExtra("get_id");
-        }
-        if (getIntent().hasExtra("get_age")) {
-            age = (int) getIntent().getSerializableExtra("get_age");
-        }
-        if (getIntent().hasExtra("get_gender")) {
-            gender = (String) getIntent().getSerializableExtra("get_gender");
-        }
-
-        for (int i=0; i<name.size(); i++) {
-            items.add(name.get(i));
-        }
-        //supply sysptoms to ListView
-        ArrayAdapter<String> aa=new ArrayAdapter<String>(this,R.layout.checkable_list_layout,R.id.txt_title,items);
-        chl.setAdapter(aa);
-        //set OnItemClickListener
-        chl.setOnItemClickListener(new OnItemClickListener(){
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // selected item position
-                int index = position;
-                // add or remove selected symptoms id to selected list
-                if(selected.contains(sid.get(index)))
-                    selected.remove(sid.get(index)); //remove deselected item from the list of selected items
-                else
-                    selected.add(sid.get(index)); //add selected item to the list of selected items
-
-            }
-
-        });
-        // create instance of button
-        submit = (Button) findViewById(R.id.submits);
-        // on click button
-        submit.setOnClickListener(new View.OnClickListener() {
+    public void Search(){
+        /* after click Button
+        pre: User click the button
+        post: move to next screen
+         */
+        search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // if nothing is selected
-                if (selected.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Please select one or more symptoms", Toast.LENGTH_LONG).show();
-                } else {
-                    //send selected symptoms to diagonosisActivity
-                    Intent startIntent = new Intent(MainActivity.this, diagonosis.class);
-                    startIntent.putExtra("get_selected", selected);
-                    startIntent.putExtra("get_age", age);
-                    startIntent.putExtra("get_gender", gender);
-                    startActivity(startIntent);
-                }
+                // create instance radio
+                radioGroup = (RadioGroup) findViewById(R.id.RadioGroup);
+                int id = radioGroup.getCheckedRadioButtonId();
+                radioButton = findViewById(id);
+                // change text to string and int
+                final int age_ = Integer.parseInt(age.getText().toString());
+                String body_part = body.getText().toString();
+                final String gender = radioButton.getText().toString();
+
+                JSONArray jsonarray;
+                //calls json function
+                jsonarray = json(gender, body_part, age_);
+                // calls ApiRequest function
+                String url = "http://18.191.248.57:80/search";
+                ApiRequest(jsonarray, gender, age_, url);
+
             }
         });
+        search2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // create instance radio
+                radioGroup = (RadioGroup) findViewById(R.id.RadioGroup);
+                int id = radioGroup.getCheckedRadioButtonId();
+                radioButton = findViewById(id);
+                // change text to string and int
+                final int age_ = Integer.parseInt(age.getText().toString());
+                String body_part = body.getText().toString();
+                final String gender = radioButton.getText().toString();
 
+                JSONArray jsonarray;
+                //calls json function
+                jsonarray = json(gender, body_part, age_);
+                // calls ApiRequest function
+                String url = "http://18.191.248.57:80/simpsearch";
+                ApiRequest(jsonarray, gender, age_, url);
+
+            }
+        });
     }
 
-/*
-    public void showSelectedItems(View view){
-        String selItems="";
-        for(String item:selected){
-            if(selItems=="")
-                selItems=item;
-            else
-                selItems+="/"+item;
+    /*convert gender, body_part, and age into jsonArray form
+      pre: @param gender, body_part, age
+      post: return JsonArray
+     */
+    public JSONArray json(String gender, String body_part, int age_){
+        final JSONObject json = new JSONObject();
+        try {
+            json.put("search", body_part);
+            json.put("gender", gender);
+            json.put("age", age_);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        Toast.makeText(this, selItems, Toast.LENGTH_LONG).show();
-    }*/
+        // put jsonobject into jsonarray
+        JSONArray ja = new JSONArray();
+        ja.put(json);
+        return ja;
+    }
+
+    /* Make a request to the back end to get back Symptoms
+       pre: @param require a Jsonarray from json function, gender, age, and the url that connect ot back end
+       post: Getting back the Symptoms from response and store into a list. Then pass the list to SymptomsActivity
+        */
+    public void ApiRequest(JSONArray jsonarray, final String gender, final int age_, final String url){
+        JsonArrayRequest JsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonarray,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        ArrayList<String> name = new ArrayList<String>();
+                        ArrayList<String> sid = new ArrayList<>();
+                        try {
+                            //getting jsonobject from jsonarray response
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                // getting the symptoms id
+                                String SID = jsonObject.getString("SID");
+                                //have to check for errors or no results otherwise the program will crash
+                                boolean correct_noresults = "no_results".equals(SID);
+                                boolean py_error = "error_python_error".equals(SID);
+                                //if error set bool page to false
+                                if (correct_noresults || py_error) {
+                                    page = false;
+                                } else {
+                                    page = true;
+                                    //getting the sysptoms name and syptoms id store into list
+                                    String common_name = jsonObject.getString("common_name");
+                                    name.add(common_name);
+                                    sid.add(SID);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        // if bool page = true move to next screen
+                        if (page){
+                            Intent startIntent = new Intent(MainActivity.this, symptomsActivity.class);
+                            // sending the data to MainActivity
+                            startIntent.putExtra("get_name", name);
+                            startIntent.putExtra("get_id", sid);
+                            startIntent.putExtra("get_gender", gender);
+                            startIntent.putExtra("get_age", age_);
+                            startActivity(startIntent);
+                        }
+                        // getting error message
+                        else {
+                            Toast.makeText(MainActivity.this, "Check you input", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("err", "error");
+            }
+        });
+        queue.add(JsonArrayRequest);
+    }
+
+
+    private TextWatcher input = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        /* Input validation
+        pre: user have to enter something in the input box
+        post: Enabled Button
+        */
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String inputbody = body.getText().toString().trim();
+            String inputage = age.getText().toString().trim();
+            search.setEnabled(!inputbody.isEmpty() && !inputage.isEmpty());
+            search2.setEnabled(!inputbody.isEmpty() && !inputage.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
 }

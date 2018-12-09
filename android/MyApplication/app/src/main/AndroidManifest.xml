@@ -27,35 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".loginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.Login" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".registerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.DIAGONOSIS" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".searchActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.DIAGONOSIS" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".symptomsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.DIAGONOSIS" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".test">
             <intent-filter>
                 <action android:name="android.intent.action.DIAGONOSIS" />
 
