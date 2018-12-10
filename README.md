@@ -50,16 +50,16 @@
 
 - /MyApplication/app/src/main/java/com/example/a69591/myapplication
   - MainActivity.java (Calls the backend to get back the symptoms)
-  - symptomsActivity.java (Shows a list of symptoms and store the selected symptoms)
-  - diagonosis.java (Calls the backend for both diagonsis and dictionary)
+  - symptomsActivity.java (Shows a list of symptoms and stores the selected symptoms)
+  - diagnosis.java (Calls the backend for both diagnosis and dictionary)
  
 - /MyApplication/app/src/main/res/layout
-  - activity_main.xml (view of the search screen)
-  - activity_symptoms.xml (view of the symptoms screen)
-  - activity_diagonsis.xml (view of the diagonsis screen)
+  - activity_main.xml (view of the Search screen)
+  - activity_symptoms.xml (view of the Symptoms screen)
+  - activity_diagnosis.xml (view of the Diagnosis screen)
 
 - /MyApplication/app/src/main/res/layout-land
   - activity_main.xml (view of the Search screen when screen is rotated)
   - activity_symptoms.xml (view of the Symptoms screen when screen is rotated)
-  - activity_diagonsis.xml (view of the diagonsis screen when screen is rotated)
+  - activity_diagnosis.xml (view of the Diagnosis screen when screen is rotated)
     
