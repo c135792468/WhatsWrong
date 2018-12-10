@@ -223,3 +223,33 @@
 	  	font-size: 15px;
 	}
 }
+
+@media (max-height: 800px) {
+	#diagnosis {
+		margin-top: 5px;
+		margin-bottom: 20px;
+	}
+
+	.more-diagnosis-list {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	.more-diagnosis .diagnosis-item {
+		font-size: 14px;
+	}
+
+	#calculated-title {
+		margin-top: 0;
+		margin-bottom: 5px;
+	}
+
+	.disclaimer {
+		margin-top: 0;
+		padding-top: 0;
+	}
+
+	#diagnosis-list .diagnosis-item {
+		font-size: 15px;
+	}
+}
