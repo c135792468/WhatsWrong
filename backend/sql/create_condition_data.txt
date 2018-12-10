@@ -1,0 +1,11 @@
+CREATE TABLE `infermedica`.`condition_data` (
+  `CID` VARCHAR(45) NOT NULL,
+  `condition_name` LONGTEXT NOT NULL,
+  `common_name` LONGTEXT NOT NULL,
+  `sex` MEDIUMTEXT NULL,
+  `category` LONGTEXT NULL,
+  `severity` LONGTEXT NULL,
+  `hint` LONGTEXT NULL,
+  `physician` LONGTEXT NULL,
+  PRIMARY KEY (`CID`),
+  UNIQUE INDEX `CID_UNIQUE` (`CID` ASC));
