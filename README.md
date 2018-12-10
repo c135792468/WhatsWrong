@@ -47,40 +47,19 @@
 ### Back-end
 
 ### Android
--/MyApplication
-  /app
-    /src
-      /main
-        /java
-          /com
-            /example
-              /a69591
-                /myapplication
-                    
-                    -MainActivity.java(contain code that calls the backend get back the symptoms)
+
+- /MyApplication/app/src/main/java/com/example/a69591/myapplication
+  - MainActivity.java (Calls the backend to get back the symptoms)
+  - symptomsActivity.java (Shows a list of symptoms and store the selected symptoms)
+  - diagonosis.java (Calls the backend for both diagonsis and dictionary)
  
-                    -symptomsActivity.java(contain code that shows a list of symptoms and store the selected symptoms)
- 
-                    -diagonosis.java(contain code that calls the backend for both the diagonsis and the dictionary)
- 
--/MyApplication
-  /app
-    /src
-      /main
-        /res
-          /layout
- 
-             -activity_main.xml(view of the search screen)
-  
-             -activity_symptoms.xml(view of the symptoms screen)
-    
-             -activity_diagonsis.xml(view of the diagonsis screen)
-    
-         /layout-land
- 
-            -activity_main.xml(view of the search screen when rotate the screen)
-  
-            -activity_symptoms.xml(view of the symptoms screen when rotate the screen)
-  
-            -activity_diagonsis.xml(view of the diagonsis screen when rotate the screen)
+- /MyApplication/app/src/main/res/layout
+  - activity_main.xml (view of the search screen)
+  - activity_symptoms.xml (view of the symptoms screen)
+  - activity_diagonsis.xml (view of the diagonsis screen)
+
+- /MyApplication/app/src/main/res/layout-land
+  - activity_main.xml (view of the Search screen when screen is rotated)
+  - activity_symptoms.xml (view of the Symptoms screen when screen is rotated)
+  - activity_diagonsis.xml (view of the diagonsis screen when screen is rotated)
     
