@@ -46,7 +46,7 @@
 
 ### Back-end
 backend/android_call_to_server
-  -android_call.txt: this is a snippet of the code used to test api calls to our server, on android sdk.
+  - android_call.txt: this is a snippet of the code used to test api calls to our server, on android sdk.
   
 backend/react_call_to_server
   - display_results.txt: this is a code snippet of code used to display results on our front end. initially we had trouble, but was able   to display symptoms using this code
@@ -58,18 +58,18 @@ backend/misc_helper_code
   - parse_symptoms.txt: this was a script written to parse the json of symptoms from infermedica. we used this script to generate an       sql file to populate our database
   
 backend/sql
-  -create_schema.txt: contains sql code to create the schema for our database
-  -create_condition_data.txt: contains sql code to create the table condition_data
-  -create_symptom_data.txt: contains sql code to create the symptom_data table
-  -insert_into_condition_data.txt: contains sqlcode to populate condition_data
-  -insert_into_symptom_data.txt: contains sql code to populate symptom_data
-  -update_physicians_condition_data.txt: contains sql code to update the physicians column in condition_data
+  - create_schema.txt: contains sql code to create the schema for our database
+  - create_condition_data.txt: contains sql code to create the table condition_data
+  - create_symptom_data.txt: contains sql code to create the symptom_data table
+  - insert_into_condition_data.txt: contains sqlcode to populate condition_data
+  - insert_into_symptom_data.txt: contains sql code to populate symptom_data
+  - update_physicians_condition_data.txt: contains sql code to update the physicians column in condition_data
   
 backend/server
-  -app.py: this is the code used on our server. this code contains the four main functions used in our app. those functions are search,   simpsearch, diagnosis, and dict.
+  - app.py: this is the code used on our server. this code contains the four main functions used in our app. those functions are search,   simpsearch, diagnosis, and dict.
   
 backend/local
-  -app.py: this is code that can be run locally, if someone wants to run our api on their machine. this code contains the same 4
+  - app.py: this is code that can be run locally, if someone wants to run our api on their machine. this code contains the same 4
   functions on our server api.
 
 ### Android
