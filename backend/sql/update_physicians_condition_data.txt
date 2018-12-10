@@ -1,0 +1,26 @@
+UPDATE infermedica.condition_data SET physician = 'Traumatologist' WHERE category = 'Traumatology';
+UPDATE infermedica.condition_data SET physician = 'Toxicologist' WHERE category = 'Toxicology';
+UPDATE infermedica.condition_data SET physician = 'Surgeon' WHERE category = 'Surgery';
+UPDATE infermedica.condition_data SET physician = 'Rheumatologist' WHERE category = 'Rheumatology';
+UPDATE infermedica.condition_data SET physician = 'Pulmonologist' WHERE category = 'Pulmonology';
+UPDATE infermedica.condition_data SET physician = 'Psychiatrist' WHERE category = 'Psychiatry';
+UPDATE infermedica.condition_data SET physician = 'consult a medical professional' WHERE category = 'Other';
+UPDATE infermedica.condition_data SET physician = 'Orthopedist' WHERE category = 'Orthopedics';
+UPDATE infermedica.condition_data SET physician = 'Ophthalmologist' WHERE category = 'Ophthalmology';
+UPDATE infermedica.condition_data SET physician = 'Oncologist' WHERE category = 'Oncology';
+UPDATE infermedica.condition_data SET physician = 'Neurologist' WHERE category = 'Neurology';
+UPDATE infermedica.condition_data SET physician = 'Nephrologist' WHERE category = 'Nephrology';
+UPDATE infermedica.condition_data SET physician = 'Laryngologist' WHERE category = 'Laryngology/ENT';
+UPDATE infermedica.condition_data SET physician = 'Internalist' WHERE category = 'Internal Medicine';
+UPDATE infermedica.condition_data SET physician = 'Infectious Disease Specialist' WHERE category = 'Infectiology';
+UPDATE infermedica.condition_data SET physician = 'Hypertensiologist' WHERE category = 'Hypertensiology';
+UPDATE infermedica.condition_data SET physician = 'Hematologist' WHERE category = 'Hematology';
+UPDATE infermedica.condition_data SET physician = 'Gynecologist' WHERE category = 'Gynecology';
+UPDATE infermedica.condition_data SET physician = 'Gastroenterologist' WHERE category = 'Gastroenterology';
+UPDATE infermedica.condition_data SET physician = 'Endocrinologist' WHERE category = 'Endocrinology';
+UPDATE infermedica.condition_data SET physician = 'Diabetologist' WHERE category = 'Diabetology';
+UPDATE infermedica.condition_data SET physician = 'Dermatologist' WHERE category = 'Dermatology';
+UPDATE infermedica.condition_data SET physician = 'Dentist' WHERE category = 'Dentistry';
+UPDATE infermedica.condition_data SET physician = 'Cardiologist' WHERE category = 'Cardiology';
+UPDATE infermedica.condition_data SET physician = 'Angiologist' WHERE category = 'Angiology';
+UPDATE infermedica.condition_data SET physician = 'Allergologist' WHERE category = 'Allergology'

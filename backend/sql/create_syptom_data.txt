@@ -1,0 +1,9 @@
+CREATE TABLE `infermedica`.`symptom_data` (
+  `SID` VARCHAR(45) NOT NULL,
+  `symptom_name` LONGTEXT NOT NULL,
+  `common_name` LONGTEXT NULL,
+  `sex` VARCHAR(10) NULL,
+  `img_url` LONGTEXT NULL,
+  `seriousness` VARCHAR(45) NULL,
+  PRIMARY KEY (`SID`),
+  UNIQUE INDEX `SID_UNIQUE` (`SID` ASC) VISIBLE);
