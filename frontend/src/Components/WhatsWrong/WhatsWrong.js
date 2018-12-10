@@ -208,9 +208,9 @@ class WhatsWrong extends Component {
 					
 					// This if statement is used to ensure that we are getting back results
 					if(x.data[0].SID !== "no_results"){
-						// We are limiting the number of symptoms being saved to 10 to not overwhelm the user
-						if (x.data.length > 10) {
-							for(var i = 0; i < 10; i++) {
+						// We are limiting the number of symptoms being saved to 8 to not overwhelm the user
+						if (x.data.length > 8) {
+							for(var i = 0; i < 8; i++) {
 								// For each of the values in x.data, we are pushing the symptom names 
 								// and symptom IDs from the returned object into the local array and then
 								// 'this.state', so we can output the results to the user in render()

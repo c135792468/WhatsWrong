@@ -83,3 +83,27 @@ ul {
 	    margin-right: 10px;
 	}
 }
+
+@media (max-height: 700px) {
+	#apply-title {
+		margin: 0;
+	}
+
+	#showingSymptoms {
+		padding-top: 10px;
+		padding-bottom: 0px;
+	}
+
+	ul {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	#minimizedTitleView {
+		margin-bottom: 0px;
+	}
+
+	#submit-button {
+		margin-top: 0px;
+	}
+}
