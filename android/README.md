@@ -1,5 +1,3 @@
-# What's Wrong?
-
 ## Android Setup
 
 1. Download Android Studio
