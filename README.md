@@ -49,13 +49,13 @@ backend/android_call_to_server
   -android_call.txt: this is a snippet of the code used to test api calls to our server, on android sdk.
   
 backend/react_call_to_server
-  -display_results.txt: this is a code snippet of code used to display results on our front end. initially we had trouble, but was able   to display symptoms using this code
-  -first_call.txt: another code snippet of react code used to perform an api call to our server. this was the first api call in react     that we experimented with
-  -parsed_search_results: this was the code used to parse search results from our api. very useful for testing the api, on the front end
+  - display_results.txt: this is a code snippet of code used to display results on our front end. initially we had trouble, but was able   to display symptoms using this code
+  - first_call.txt: another code snippet of react code used to perform an api call to our server. this was the first api call in react     that we experimented with
+  - parsed_search_results: this was the code used to parse search results from our api. very useful for testing the api, on the front end
   
 backend/misc_helper_code
-  -parse_conditions.txt: this was a script written to parse the json of conditions from infermedica. we used this script to generate an   sql file to populate our database
-  -parse_symptoms.txt: this was a script written to parse the json of symptoms from infermedica. we used this script to generate an       sql file to populate our database
+  - parse_conditions.txt: this was a script written to parse the json of conditions from infermedica. we used this script to generate an   sql file to populate our database
+  - parse_symptoms.txt: this was a script written to parse the json of symptoms from infermedica. we used this script to generate an       sql file to populate our database
   
 backend/sql
   -create_schema.txt: contains sql code to create the schema for our database
