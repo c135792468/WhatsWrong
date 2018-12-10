@@ -57,19 +57,19 @@
  
 -/MyApplication/app/src/main/res
 
-  -/layout
+    -/layout
  
-    -activity_main.xml(view of the search screen)
+      -activity_main.xml(view of the search screen)
   
-    -activity_symptoms.xml(view of the symptoms screen)
+      -activity_symptoms.xml(view of the symptoms screen)
+    
+     -activity_diagonsis.xml(view of the diagonsis screen)
   
-    -activity_diagonsis.xml(view of the diagonsis screen)
-  
-  -/layout-land
+    -/layout-land
  
-    -activity_main.xml(view of the search screen when rotate the screen)
+      -activity_main.xml(view of the search screen when rotate the screen)
   
-    -activity_symptoms.xml(view of the symptoms screen when rotate the screen)
+      -activity_symptoms.xml(view of the symptoms screen when rotate the screen)
   
-    -activity_diagonsis.xml(view of the diagonsis screen when rotate the screen)
-  
+      -activity_diagonsis.xml(view of the diagonsis screen when rotate the screen)
+    
