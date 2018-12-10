@@ -1,6 +1,6 @@
 # What's Wrong?
 
-## Setup (OSX)
+## Front-End Setup (OSX)
 
 1. Go to terminal and run:
 
