@@ -63,7 +63,7 @@
   
       -activity_symptoms.xml(view of the symptoms screen)
     
-     -activity_diagonsis.xml(view of the diagonsis screen)
+      -activity_diagonsis.xml(view of the diagonsis screen)
   
     -/layout-land
  
