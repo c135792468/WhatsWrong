@@ -1,4 +1,4 @@
-Running the server code locally
+## Running the Server Code Locally
 
 1) Create the database
    - Create a local connection, and set the password to krisali1. The password can be modified; however, if the password is modified, it will need to be modified on the server code
